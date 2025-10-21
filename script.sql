@@ -23,6 +23,18 @@ create table tb_categoria(
     cate_nome varchar(50) not null
 );
 
+-- Nao criadas
+create table tb_usuario(
+	usu_id int not null primary key auto_increment,
+    usu_nome varchar(50) not null
+);
+
+create table tb_perfil(
+	per_id int not null primary key auto_increment,
+	per_adm boolean not null
+);
+
+
 
 -- Inserir marcas
 INSERT INTO tb_marca (marc_nome) VALUES
