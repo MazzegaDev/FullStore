@@ -11,6 +11,18 @@ export default class ProdutoEntity extends Base {
     #marc_id;
     #cate_id;
 
+    constructor(id, nome, quant, data, preco, idM, idC){
+        super();
+        this.#prod_id = id;
+        this.#prod_nome = nome;
+        this.#prod_quant = quant;
+        this.#prod_caddat = data;
+        this.#prod_caddat = data;
+        this.#prod_preco = preco;
+        this.#marc_id = idM;
+        this.#cate_id = idC;
+    }
+
     //getters
     get prod_id() {
         return this.#prod_id;
