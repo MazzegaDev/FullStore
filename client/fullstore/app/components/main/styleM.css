@@ -1,0 +1,15 @@
+body{
+    padding: 0;
+    margin: 0;
+}
+
+.section-sobre{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.2rem;
+}
+.texto{
+    font-size: 1.2rem;
+    padding: 1.1rem;
+}

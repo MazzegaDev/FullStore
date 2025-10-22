@@ -1,0 +1,17 @@
+.listaLinks{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    list-style-type: none;
+}
+.links{
+    border-radius: 25px;
+    padding: 0.2rem;
+    background-color: #8390FA;
+    color: white;
+    text-decoration: none;
+}
+
+.links:hover{
+    background-color: rgb(53, 52, 52);
+}

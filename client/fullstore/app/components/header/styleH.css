@@ -1,0 +1,27 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
+.header{
+    color: black;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #1D2F6F;
+  
+}
+
+.login{
+    padding: 0.5rem;
+    width: 15vh;
+    border: 2px solid #8390FA;
+    border-radius: 25px;
+    background-color: #8390FA;
+}
+
+.link{
+    text-decoration: none;
+    color: white;
+}
