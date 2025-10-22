@@ -10,6 +10,21 @@ export default class ProdutoRepository{
         this.#banco = new Database();
     }
 
+    async cadastrar(produto){
+        const sql = "INSERT INTO tb_produto (prod_nome, prod_quant, prod_caddat, prod_preco, marc_id, cate_id) VALUES (?, ?, ?, ?, ?,?)";
+        const values = [
+            produto.prod_nome,
+            produto.prod_quant,
+            produto.prod_caddat,
+            produto.prod_preco,
+            produto.marc_id.marc_id,
+            produto.cate_id.cate_id,
+        ]
+        const result = await this.#banco.ExecutaComandoNonQuery(sql, values);
+
+        return result;
+    }
+
     async listar(){
         const sql = "select * from tb_produto P inner join tb_marca M on P.marc_id = M.marc_id inner join tb_categoria C on P.cate_id = C.cate_id";
         
