@@ -22,6 +22,9 @@ const doc = {
             cate_id: 1
         }
       },
+      marca:{
+        nome: "AMD"
+      },
     }
   },
 };

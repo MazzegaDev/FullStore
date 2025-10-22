@@ -21,6 +21,14 @@ export default class MarcaRepository{
         return marca;
     }
 
+    async cadastrar(marca){
+        const sql = "insert into tb_marca (marc_nome) values (?)";
+        const values = [marca.marc_nome];
+        const result = await this.#banco.ExecutaComandoNonQuery(sql, values);
+        
+        return result;
+    }
+
     toMap(row){
         let marca = new Marca();
         marca.marc_id = row["marc_id"];

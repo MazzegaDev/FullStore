@@ -7,6 +7,28 @@ export default class MarcaController {
         this.#mRepo = new MarcaRepository();
     }
 
+    async cadastrar(req, res) {
+        try {
+            let {nome} = req.body;
+            if(nome){
+                let marca = new Marca(0, nome);
+                if(await this.#mRepo.cadastrar(marca)){
+                    return res.status(200).json({msg: "Nova marca cadastrada!"});
+                }else{
+                    throw new Error("Não foi possivel cadastrar a marca.");
+                }
+            }else{
+                return res.status(400).json({msg: "A marca não pode conter informações invalidas."})
+            }
+
+        } catch (error) {
+            console.log(error);
+            return res
+                .status(500)
+                .json({ msg: "Não foi possivel processar a requisição." });
+        }
+    }
+
     async listar(req, res) {
         try {
             let lista = await this.#mRepo.listar();
