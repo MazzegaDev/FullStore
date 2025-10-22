@@ -39,6 +39,13 @@ export default function AdminLayout({children}) {
                             <i className="fas fa-user"></i>
                             <span>Produtos</span></Link>
                     </li>
+                
+                    <li className="nav-item">
+                        <Link className="nav-link" href="/admin/marcas">
+                            <i className="fas fa-user"></i>
+                            <span>Marcas</span></Link>
+                    </li>
+
                 </ul>
 
                 <div id="content-wrapper" className="d-flex flex-column">
