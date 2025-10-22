@@ -1,21 +1,21 @@
-import ProdutoEntity from "../entities/produto.js";
-import ProdutoRepository from "../repositories/produtoRepository.js";
+import Categoria from "../entities/categoria.js";
+import CategoriaRepository from "../repositories/categoriasRepository.js";
 
-export default class ProdutoController {
-    #pRepo;
+export default class CategoriaController {
+    #cRepo;
     constructor() {
-        this.#pRepo = new ProdutoRepository();
+        this.#cRepo = new CategoriaRepository();
     }
 
     async listar(req, res) {
         try {
-            let lista = await this.#pRepo.listar();
+            let lista = await this.#cRepo.listar();
             if (lista.length > 0) {
                 return res.status(200).json(lista);
             } else {
                 return res
                     .status(404)
-                    .json({ msg: "Nenhum produto cadastrado." });
+                    .json({ msg: "Nenhuma categoria cadastrada." });
             }
         } catch (error) {
             console.log(error);
