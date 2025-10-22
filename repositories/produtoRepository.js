@@ -2,7 +2,7 @@ import Produto from "../entities/produto.js";
 import Marca from "../entities/marca.js";
 import Categoria from "../entities/categoria.js";
 
-import Database from "../db/";
+import Database from "../db/dataBase.js";
 
 export default class ProdutoRepository{
     #banco;
