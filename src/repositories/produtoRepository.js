@@ -26,7 +26,7 @@ export default class ProdutoRepository{
     }
 
     async listar(){
-        const sql = "select * from tb_produto P inner join tb_marca M on P.marc_id = M.marc_id inner join tb_categoria C on P.cate_id = C.cate_id";
+        const sql = "select * from tb_produto P inner join tb_marca M on P.marc_id = M.marc_id inner join tb_categoria C on P.cate_id = C.cate_id order by prod_id";
         
         let produtos = [];
 
