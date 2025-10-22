@@ -9,7 +9,7 @@ import categoriaRoute from "./routes/categoriaRoute.js"
 
 const server = express();
 server.use(cors());
-
+server.use(express.json());
 
 server.use("/produto", produtoRoute);
 server.use("/marca", marcaRoute);
