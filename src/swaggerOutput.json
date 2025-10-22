@@ -1,0 +1,193 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API REST Loja",
+    "description": "API REST do backend de uma loja ficticia",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:5000/"
+    }
+  ],
+  "paths": {
+    "/produto/": {
+      "post": {
+        "tags": [
+          "Produto"
+        ],
+        "summary": "Cadastra um produto",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/produto"
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Produto"
+        ],
+        "summary": "Lista todos os produtos",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Nenhum produto para listar",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/erro"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/erro"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/marca/": {
+      "get": {
+        "tags": [
+          "Marca"
+        ],
+        "summary": "Lista todas as marcas",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Nenhuma marca para listar",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/erro"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/erro"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/categoria/": {
+      "get": {
+        "tags": [
+          "Categoria"
+        ],
+        "summary": "Lista todas as categorias",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Nenhuma categoria para listar",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/erro"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/erro"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "erro": {
+        "type": "object",
+        "properties": {
+          "msg": {
+            "type": "string",
+            "example": "Ocorreu um erro"
+          }
+        },
+        "xml": {
+          "name": "erro"
+        }
+      },
+      "produto": {
+        "type": "object",
+        "properties": {
+          "nome": {
+            "type": "string",
+            "example": "RX 7600"
+          },
+          "quant": {
+            "type": "number",
+            "example": 2
+          },
+          "preco": {
+            "type": "number",
+            "example": 1799
+          },
+          "marca": {
+            "type": "object",
+            "properties": {
+              "marc_id": {
+                "type": "number",
+                "example": 1
+              }
+            }
+          },
+          "categoria": {
+            "type": "object",
+            "properties": {
+              "cate_id": {
+                "type": "number",
+                "example": 1
+              }
+            }
+          }
+        },
+        "xml": {
+          "name": "produto"
+        }
+      }
+    }
+  }
+}

@@ -1,13 +1,16 @@
 {
-  "dependencies": {
-    "cors": "^2.8.5",
-    "express": "^5.1.0",
-    "jsonwebtoken": "^9.0.2",
-    "mysql2": "^3.15.3",
-    "swagger": "^0.7.5",
-    "swagger-autogen": "^2.23.7",
-    "swagger-ui": "^5.29.5",
-    "swagger-ui-express": "^5.0.1"
-  },
-  "type": "module"
+    "dependencies": {
+        "cors": "^2.8.5",
+        "express": "^5.1.0",
+        "jsonwebtoken": "^9.0.2",
+        "mysql2": "^3.15.3",
+        "swagger": "^0.7.5",
+        "swagger-autogen": "^2.23.7",
+        "swagger-ui": "^5.29.5",
+        "swagger-ui-express": "^5.0.1"
+    },
+    "type": "module",
+    "scripts": {
+        "start": "node swagger.js"
+    }
 }
