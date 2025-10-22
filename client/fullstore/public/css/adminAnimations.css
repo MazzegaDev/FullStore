@@ -1,0 +1,38 @@
+/* ===== Animações elegantes nos ícones da sidebar ===== */
+
+.icon-animate i {
+  transition: all 0.3s ease;
+}
+
+/* Bounce no hover */
+.icon-animate:hover i {
+  transform: translateY(-3px);
+  animation: bounce 0.8s infinite;
+  color: #f8f9fc;
+}
+
+/* Tipos de animação */
+.icon-animate:nth-child(2):hover i {
+  animation: rotate 0.8s linear infinite;
+}
+
+.icon-animate:nth-child(3):hover i {
+  animation: pulse 1s infinite;
+}
+
+/* Keyframes */
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); color: #fff; }
+  100% { transform: scale(1); }
+}
