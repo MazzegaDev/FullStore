@@ -28,7 +28,10 @@ export default function MarcasPage() {
                     <i className="fas fa-industry me-2"></i>
                     Marcas Cadastradas
                 </h6>
-                <Link href="/admin/marcas/cadastrar" className="btn btn-primary btn-sm shadow-sm">
+                <Link
+                    href="/admin/marcas/cadastrar"
+                    className="btn btn-primary btn-sm shadow-sm"
+                >
                     <i className="fas fa-plus-circle me-1"></i> Nova Marca
                 </Link>
             </div>
@@ -39,9 +42,15 @@ export default function MarcasPage() {
                     <table className="table table-hover align-middle text-center">
                         <thead className="table-primary">
                             <tr>
-                                <th><i className="fas fa-id-badge"></i> ID</th>
-                                <th><i className="fas fa-tag"></i> Nome</th>
-                                <th><i className="fas fa-cog"></i> Ações</th>
+                                <th>
+                                    <i className="fas fa-id-badge"></i> ID
+                                </th>
+                                <th>
+                                    <i className="fas fa-tag"></i> Nome
+                                </th>
+                                <th>
+                                    <i className="fas fa-cog"></i> Ações
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -49,13 +58,21 @@ export default function MarcasPage() {
                                 lista.map((obj, index) => (
                                     <tr key={index}>
                                         <td>{obj.marc_id}</td>
-                                        <td className="text-start fw-semibold">{obj.marc_nome}</td>
+                                        <td className="text-start fw-semibold">
+                                            {obj.marc_nome}
+                                        </td>
                                         <td>
                                             <div className="d-flex justify-content-center gap-2">
-                                                <button className="btn btn-sm btn-warning" title="Editar">
+                                                <button
+                                                    className="btn btn-sm btn-warning"
+                                                    title="Editar"
+                                                >
                                                     <i className="fas fa-edit"></i>
                                                 </button>
-                                                <button className="btn btn-sm btn-danger" title="Excluir">
+                                                <button
+                                                    className="btn btn-sm btn-danger"
+                                                    title="Excluir"
+                                                >
                                                     <i className="fas fa-trash-alt"></i>
                                                 </button>
                                             </div>

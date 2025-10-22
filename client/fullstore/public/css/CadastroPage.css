@@ -1,0 +1,42 @@
+/* Wrapper para o select */
+.custom-select-wrapper select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    border: 2px solid #4e73df;
+    background-color: #f8f9fc;
+    color: #343a40;
+    width: 100%;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Hover / foco */
+.custom-select-wrapper select:hover,
+.custom-select-wrapper select:focus {
+    background-color: #e2e6ea;
+    border-color: #2e59d9;
+    box-shadow: 0 0 8px rgba(78, 115, 223, 0.3);
+    outline: none;
+}
+
+/* Scroll suave para opções longas */
+.custom-select-wrapper select::-webkit-scrollbar {
+    width: 6px;
+}
+.custom-select-wrapper select::-webkit-scrollbar-thumb {
+    background-color: #4e73df;
+    border-radius: 3px;
+}
+.custom-select-wrapper select::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Placeholder da primeira option */
+.custom-select-wrapper select option:first-child {
+    color: #6c757d;
+    font-style: italic;
+}
