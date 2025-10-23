@@ -7,6 +7,15 @@ export default class CategoriaRepository{
         this.#banco = new dataBase();
     }
 
+    async cadastrar(categoria){
+        const sql = "insert into tb_categoria (cate_nome) values (?)";
+        const values = [categoria.cate_nome];
+
+        const result = await this.#banco.ExecutaComandoNonQuery(sql, values);
+        
+        return result;
+    }
+
     async listar(){
         const sql = "select * from tb_categoria";
         let categoria = [];

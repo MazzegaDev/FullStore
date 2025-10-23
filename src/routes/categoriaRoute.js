@@ -4,6 +4,26 @@ import CategoriaController from "../controllers/categoriaController.js";
 const router = express.Router();
 const ctrl = new CategoriaController();
 
+router.post("/", (req, res) => {
+    // #swagger.tags = ['Categoria']
+    // #swagger.summary = 'Cadastra todas as categorias'
+
+       /*
+        #swagger.requestBody = {
+            required: true,
+            content: {
+                "application/json": {
+                    schema: {
+                        $ref: '#/components/schemas/categoria'
+                    }
+                }
+            }
+        }
+    */
+
+    ctrl.cadastrar(req, res);
+});
+
 router.get("/", (req, res) => {
     // #swagger.tags = ['Categoria']
     // #swagger.summary = 'Lista todas as categorias'

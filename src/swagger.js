@@ -25,6 +25,9 @@ const doc = {
       marca:{
         nome: "AMD"
       },
+      categoria:{
+        nome: "Eletronico"
+      },
     }
   },
 };
