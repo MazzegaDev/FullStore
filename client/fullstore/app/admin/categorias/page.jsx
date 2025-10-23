@@ -52,9 +52,6 @@ export default function CategoriaPage() {
                                         <td className="text-start fw-semibold">{obj.cate_nome}</td>
                                         <td>
                                             <div className="d-flex justify-content-center gap-2">
-                                                <button className="btn btn-sm btn-info" title="Ver detalhes">
-                                                    <i className="fas fa-eye"></i>
-                                                </button>
                                                 <button className="btn btn-sm btn-warning" title="Editar">
                                                     <i className="fas fa-edit"></i>
                                                 </button>
