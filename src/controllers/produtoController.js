@@ -63,4 +63,21 @@ export default class ProdutoController {
                 .json({ msg: "Não foi possivel processar a requisição." });
         }
     }
+
+    async buscaId(req, res){
+        try {
+            let {id} = req.params;
+            let produto = await this.#pRepo.buscaId(id);
+            if(produto){
+                return res.status(200).json(produto);
+            }else{
+                return res.status(404).json({msg: "Produto não encontrado."})
+            }
+        } catch (error) {
+            console.log(error);
+            return res
+                .status(500)
+                .json({ msg: "Não foi possivel processar a requisição." });
+        }
+    }
 }

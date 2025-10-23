@@ -38,6 +38,22 @@ export default class ProdutoRepository{
         }
         return produtos;
     }
+    async buscaId(id){
+        const sql = "select * from tb_produto where prod_id = ?";
+        const values = [id];
+
+        const rows = await this.#banco.ExecutaComando(sql, values);
+
+        if(rows.length > 0){
+            const row = rows[0];
+
+            const produto = this.toMap(row);
+            
+            return produto;
+        }
+        return null;
+
+    }
 
     toMap(row){
         let produto = new Produto();
