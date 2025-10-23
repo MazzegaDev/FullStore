@@ -49,5 +49,24 @@ router.get("/:id", (req, res) => {
     */
    ctrl.buscaId(req, res);
 })
+router.put("/", (req, res) => {
+    // #swagger.tags = ['Produto']
+    // #swagger.summary = 'Altera um produto'
+
+    /*
+        #swagger.requestBody = {
+            required: true,
+            content: {
+                "application/json": {
+                    schema: {
+                        $ref: '#/components/schemas/produtoAlter'
+                    }
+                }
+            }
+        }
+    */
+
+    ctrl.alterarProduto(req, res);
+})
 
 export default router;

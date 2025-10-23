@@ -55,6 +55,21 @@ export default class ProdutoRepository{
 
     }
 
+    async alterarProduto(produto){
+        const sql = "update tb_produto set prod_nome = ?, prod_quant = ?, prod_preco = ?, marc_id = ?, cate_id = ? where prod_id = ?";
+        const values = [
+            produto.prod_nome,
+            produto.prod_quant,
+            produto.prod_preco,
+            produto.marc_id.marc_id,
+            produto.cate_id.cate_id,
+            produto.prod_id,
+        ]
+        const result = await this.#banco.ExecutaComandoNonQuery(sql, values);
+
+        return result;
+    }
+
     toMap(row){
         let produto = new Produto();
         produto.prod_id = row["prod_id"];

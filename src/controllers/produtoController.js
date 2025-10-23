@@ -32,11 +32,9 @@ export default class ProdutoController {
                     throw new Error("Não foi possivel cadastrar o produto!");
                 }
             } else {
-                return res
-                    .status(400)
-                    .json({
-                        msg: "O produto não pode conter informações invalidas.",
-                    });
+                return res.status(400).json({
+                    msg: "O produto não pode conter informações invalidas.",
+                });
             }
         } catch (error) {
             console.log(error);
@@ -64,14 +62,64 @@ export default class ProdutoController {
         }
     }
 
-    async buscaId(req, res){
+    async buscaId(req, res) {
         try {
-            let {id} = req.params;
+            let { id } = req.params;
             let produto = await this.#pRepo.buscaId(id);
-            if(produto){
+            if (produto) {
                 return res.status(200).json(produto);
-            }else{
-                return res.status(404).json({msg: "Produto não encontrado."})
+            } else {
+                return res.status(404).json({ msg: "Produto não encontrado." });
+            }
+        } catch (error) {
+            console.log(error);
+            return res
+                .status(500)
+                .json({ msg: "Não foi possivel processar a requisição." });
+        }
+    }
+
+    async alterarProduto(req, res) {
+        try {
+            let { id, nome, quant, preco, marca, categoria } = req.body;
+            if (
+                id &&
+                nome &&
+                quant &&
+                preco &&
+                marca.marc_id &&
+                categoria.cate_id
+            ) {
+                if (await this.#pRepo.buscaId(id)) {
+                    let data = new Date().toISOString().split("T");
+                    let dataFormatada = data[0];
+                    let produto = new ProdutoEntity(
+                        id,
+                        nome,
+                        quant,
+                        dataFormatada,
+                        preco,
+                        new Marca(marca.marc_id),
+                        new Categoria(categoria.cate_id)
+                    );
+                    if (await this.#pRepo.alterarProduto(produto)) {
+                        return res
+                            .status(200)
+                            .json({ msg: "Produto alterado com sucesso!" });
+                    } else {
+                        throw new Error("Não foi possivel alterar o produto.");
+                    }
+                } else {
+                    return res
+                        .status(404)
+                        .json({
+                            msg: "Produto não encontrado para alteração.",
+                        });
+                }
+            } else {
+                return res.status(400).json({
+                    msg: "O produto não pode conter informações invalidas.",
+                });
             }
         } catch (error) {
             console.log(error);
