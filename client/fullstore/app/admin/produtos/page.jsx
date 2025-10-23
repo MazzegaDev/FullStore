@@ -10,28 +10,39 @@ export default function ProdutosPage() {
 
     useEffect(() => {
         buscarProdutos();
-    }, []);
+    }, [lista]); //<- quando a lista mudar ele chama a lista novamente
+
     useEffect(() => {
         deletarProduto();
     }, []);
-    async function deletarProduto(e) {
-        //Recuperamos o id do produto pelo event e seu dataset
-        let id = e.target.dataset.id;
-        alert(id)
+    async function deletarProduto(obj) {
+        try {
+            //Desse objeto completo so recuperramos o d do produto
+            let id = obj.prod_id;
+            console.log(id);
+            let response = await apiClient.delete(`/produto/${id}`);
+            if (response.msg) {
+                toast.success(response.msg);
+            }
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     async function buscarProdutos() {
         try {
             const response = await apiClient.get("/produto");
             setLista(response);
-        } catch (err) {
-            console.error("Erro ao buscar produtos:", err);
+        } catch (error) {
+            console.error("Erro ao buscar produtos:", error);
         }
     }
 
     return (
         <div className="card shadow mb-4">
-            <div><Toaster/></div>
+            <div>
+                <Toaster />
+            </div>
             <div className="card-header py-3 d-flex justify-content-between align-items-center">
                 <h6 className="m-0 font-weight-bold text-primary">
                     <i className="fas fa-boxes me-2"></i>
@@ -117,9 +128,10 @@ export default function ProdutosPage() {
                                                 </Link>
                                                 <button
                                                     className="btn btn-sm btn-danger"
-                                                    // Cada produt vai ter seu id no btn de excluir
-                                                    data-id={obj.prod_id}
-                                                    onClick={deletarProduto}
+                                                    //Passamos o objeto completo (produto) para a funçao de deletar
+                                                    onClick={() =>
+                                                        deletarProduto(obj)
+                                                    }
                                                     title="Excluir"
                                                 >
                                                     <i className="fas fa-trash-alt"></i>

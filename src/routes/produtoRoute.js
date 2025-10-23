@@ -69,4 +69,11 @@ router.put("/", (req, res) => {
     ctrl.alterarProduto(req, res);
 })
 
+router.delete("/:id", (req, res) => {
+    // #swagger.tags = ['Produto']
+    // #swagger.summary = 'Deleta um produto'
+
+    ctrl.deletar(req, res);
+})
+
 export default router;
