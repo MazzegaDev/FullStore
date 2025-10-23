@@ -92,12 +92,16 @@ export default function ProdutosPage() {
                                                 >
                                                     <i className="fas fa-eye"></i>
                                                 </button>
-                                                <button
-                                                    className="btn btn-sm btn-warning"
-                                                    title="Editar"
+                                                <Link href={"/admin/produtos/alterar/" + obj.prod_id}
+                                                   
                                                 >
-                                                    <i className="fas fa-edit"></i>
-                                                </button>
+                                                    <button
+                                                        className="btn btn-sm btn-warning"
+                                                        title="Editar"
+                                                    >
+                                                        <i className="fas fa-edit"></i>
+                                                    </button>
+                                                </Link>
                                                 <button
                                                     className="btn btn-sm btn-danger"
                                                     title="Excluir"
