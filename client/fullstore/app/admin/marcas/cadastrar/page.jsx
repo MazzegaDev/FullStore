@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import Link from "next/link";
+import { apiClient, ApiClient } from "@/utils/apiClient";
 
 export default function CadastroPage() {
     const nomeRef = useRef("");
@@ -20,15 +21,10 @@ export default function CadastroPage() {
         const marca = { nome };
 
         try {
-            const response = await fetch("http://localhost:5000/marca/", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(marca),
-            });
-            const data = await response.json();
-
-            if (response.status === 200) toast.success(data.msg);
-            else toast.error(data.msg);
+            const response = await apiClient.post("/marca", marca);
+            if (response.msg){
+                toast.success(response.msg)
+            }
         } catch (error) {
             console.error(error);
             toast.error("Erro ao conectar com o servidor");
