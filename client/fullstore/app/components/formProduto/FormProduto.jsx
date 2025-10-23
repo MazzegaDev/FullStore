@@ -56,9 +56,8 @@ export default function formProduto() {
 
     async function buscaMarcas() {
         try {
-            const response = await fetch("http://localhost:5000/marca/");
-            const corpo = await response.json();
-            setMarcas(corpo);
+            const response = await apiClient.get("/marca");
+            setMarcas(response);
         } catch (error) {
             console.error("Erro ao buscar marcas:", error);
         }
@@ -66,9 +65,8 @@ export default function formProduto() {
 
     async function buscaCategoria() {
         try {
-            const response = await fetch("http://localhost:5000/categoria/");
-            const corpo = await response.json();
-            setCategorias(corpo);
+            const response = await apiClient.get("/categoria");
+            setCategorias(response);
         } catch (error) {
             console.error("Erro ao buscar categorias:", error);
         }

@@ -46,6 +46,7 @@ export default function CadastroPage() {
                     <form onSubmit={handleSubmit}>
                         <div className="mb-3">
                             <label htmlFor="nome" className="form-label fw-semibold">
+                                <i className="fas fa-pen me-2 text-secondary"></i>
                                 Nome da Marca
                             </label>
                             <input
