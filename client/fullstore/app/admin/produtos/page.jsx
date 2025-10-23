@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { apiClient, ApiClient } from "@/utils/apiClient";
 
 export default function ProdutosPage() {
     const [lista, setLista] = useState([]);
@@ -12,10 +13,8 @@ export default function ProdutosPage() {
 
     async function buscarProdutos() {
         try {
-            const response = await fetch("http://localhost:5000/produto/");
-            const corpo = await response.json();
-            setLista(corpo);
-            console.log(corpo)
+            const response = await apiClient.get("/produto");
+            setLista(response);
         } catch (err) {
             console.error("Erro ao buscar produtos:", err);
         }
@@ -28,7 +27,10 @@ export default function ProdutosPage() {
                     <i className="fas fa-boxes me-2"></i>
                     Produtos Cadastrados
                 </h6>
-                <Link href="/admin/produtos/cadastrar" className="btn btn-primary btn-sm shadow-sm">
+                <Link
+                    href="/admin/produtos/cadastrar"
+                    className="btn btn-primary btn-sm shadow-sm"
+                >
                     <i className="fas fa-plus-circle me-1"></i> Novo Produto
                 </Link>
             </div>
@@ -38,14 +40,31 @@ export default function ProdutosPage() {
                     <table className="table table-hover align-middle text-center">
                         <thead className="table-primary">
                             <tr>
-                                <th><i className="fas fa-id-badge"></i> ID</th>
-                                <th><i className="fas fa-tag"></i> Nome</th>
-                                <th><i className="fas fa-boxes"></i> Estoque</th>
-                                <th><i className="fas fa-calendar-alt"></i> Data</th>
-                                <th><i className="fas fa-dollar-sign"></i> Preço</th>
-                                <th><i className="fas fa-industry"></i> Marca</th>
-                                <th><i className="fas fa-layer-group"></i> Categoria</th>
-                                <th><i className="fas fa-cog"></i> Ações</th>
+                                <th>
+                                    <i className="fas fa-id-badge"></i> ID
+                                </th>
+                                <th>
+                                    <i className="fas fa-tag"></i> Nome
+                                </th>
+                                <th>
+                                    <i className="fas fa-boxes"></i> Estoque
+                                </th>
+                                <th>
+                                    <i className="fas fa-calendar-alt"></i> Data
+                                </th>
+                                <th>
+                                    <i className="fas fa-dollar-sign"></i> Preço
+                                </th>
+                                <th>
+                                    <i className="fas fa-industry"></i> Marca
+                                </th>
+                                <th>
+                                    <i className="fas fa-layer-group"></i>{" "}
+                                    Categoria
+                                </th>
+                                <th>
+                                    <i className="fas fa-cog"></i> Ações
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -53,21 +72,36 @@ export default function ProdutosPage() {
                                 lista.map((obj, index) => (
                                     <tr key={index} className="align-middle">
                                         <td>{obj.prod_id}</td>
-                                        <td className="text-start fw-semibold">{obj.prod_nome}</td>
+                                        <td className="text-start fw-semibold">
+                                            {obj.prod_nome}
+                                        </td>
                                         <td>{obj.prod_quant}</td>
-                                        <td>{new Date(obj.prod_caddat).toLocaleDateString()}</td>
+                                        <td>
+                                            {new Date(
+                                                obj.prod_caddat
+                                            ).toLocaleDateString()}
+                                        </td>
                                         <td>R$ {obj.prod_preco}</td>
                                         <td>{obj.marc_id?.marc_nome ?? "-"}</td>
                                         <td>{obj.cate_id?.cate_nome ?? "-"}</td>
                                         <td>
                                             <div className="d-flex justify-content-center gap-2">
-                                                <button className="btn btn-sm btn-info" title="Ver detalhes">
+                                                <button
+                                                    className="btn btn-sm btn-info"
+                                                    title="Ver detalhes"
+                                                >
                                                     <i className="fas fa-eye"></i>
                                                 </button>
-                                                <button className="btn btn-sm btn-warning" title="Editar">
+                                                <button
+                                                    className="btn btn-sm btn-warning"
+                                                    title="Editar"
+                                                >
                                                     <i className="fas fa-edit"></i>
                                                 </button>
-                                                <button className="btn btn-sm btn-danger" title="Excluir">
+                                                <button
+                                                    className="btn btn-sm btn-danger"
+                                                    title="Excluir"
+                                                >
                                                     <i className="fas fa-trash-alt"></i>
                                                 </button>
                                             </div>
