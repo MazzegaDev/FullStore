@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { apiClient, ApiClient } from "@/utils/apiClient";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function ProdutosPage() {
     const [lista, setLista] = useState([]);
@@ -10,6 +11,14 @@ export default function ProdutosPage() {
     useEffect(() => {
         buscarProdutos();
     }, []);
+    useEffect(() => {
+        deletarProduto();
+    }, []);
+    async function deletarProduto(e) {
+        //Recuperamos o id do produto pelo event e seu dataset
+        let id = e.target.dataset.id;
+        alert(id)
+    }
 
     async function buscarProdutos() {
         try {
@@ -22,6 +31,7 @@ export default function ProdutosPage() {
 
     return (
         <div className="card shadow mb-4">
+            <div><Toaster/></div>
             <div className="card-header py-3 d-flex justify-content-between align-items-center">
                 <h6 className="m-0 font-weight-bold text-primary">
                     <i className="fas fa-boxes me-2"></i>
@@ -92,8 +102,11 @@ export default function ProdutosPage() {
                                                 >
                                                     <i className="fas fa-eye"></i>
                                                 </button>
-                                                <Link href={"/admin/produtos/alterar/" + obj.prod_id}
-                                                   
+                                                <Link
+                                                    href={
+                                                        "/admin/produtos/alterar/" +
+                                                        obj.prod_id
+                                                    }
                                                 >
                                                     <button
                                                         className="btn btn-sm btn-warning"
@@ -104,6 +117,9 @@ export default function ProdutosPage() {
                                                 </Link>
                                                 <button
                                                     className="btn btn-sm btn-danger"
+                                                    // Cada produt vai ter seu id no btn de excluir
+                                                    data-id={obj.prod_id}
+                                                    onClick={deletarProduto}
                                                     title="Excluir"
                                                 >
                                                     <i className="fas fa-trash-alt"></i>
