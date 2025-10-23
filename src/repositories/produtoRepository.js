@@ -70,6 +70,15 @@ export default class ProdutoRepository{
         return result;
     }
 
+    async deletar(id){
+        const sql = "delete from tb_produto where prod_id = ?";
+        const values = [id];
+
+        const result = await this.#banco.ExecutaComandoNonQuery(sql, values);
+
+        return result;
+    }
+
     toMap(row){
         let produto = new Produto();
         produto.prod_id = row["prod_id"];

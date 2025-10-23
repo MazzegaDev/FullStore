@@ -110,16 +110,34 @@ export default class ProdutoController {
                         throw new Error("Não foi possivel alterar o produto.");
                     }
                 } else {
-                    return res
-                        .status(404)
-                        .json({
-                            msg: "Produto não encontrado para alteração.",
-                        });
+                    return res.status(404).json({
+                        msg: "Produto não encontrado para alteração.",
+                    });
                 }
             } else {
                 return res.status(400).json({
                     msg: "O produto não pode conter informações invalidas.",
                 });
+            }
+        } catch (error) {
+            console.log(error);
+            return res
+                .status(500)
+                .json({ msg: "Não foi possivel processar a requisição." });
+        }
+    }
+
+    async deletar(req, res) {
+        try {
+            let { id } = req.params;
+            if (await this.#pRepo.buscaId(id)) {
+                if (await this.#pRepo.deletar(id)) {
+                    return res.status(200).json({ msg: "Produto deletado!" });
+                } else {
+                    throw new Error("Não foi possivel deletar o produto.");
+                }
+            } else {
+                return res.status(404).json({ msg: "Produto não encontrado." });
             }
         } catch (error) {
             console.log(error);
