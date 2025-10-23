@@ -6,7 +6,7 @@ import Link from "next/link";
 import toast, { Toaster } from "react-hot-toast";
 import { apiClient, ApiClient } from "@/utils/apiClient";
 
-export default function formProduto() {
+export default function FormProduto() {
     const [marcas, setMarcas] = useState([]);
     const [categorias, setCategorias] = useState([]);
 
@@ -99,6 +99,7 @@ export default function formProduto() {
                                 className="form-control shadow-sm"
                                 id="nome"
                                 ref={nomeRef}
+
                                 placeholder="Ex: Notebook, Camisa, Celular..."
                             />
                         </div>
