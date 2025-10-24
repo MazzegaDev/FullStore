@@ -39,7 +39,7 @@ export default function CategoriaPage() {
     return (
         <div className="card shadow mb-4">
             {/* Cabeçalho */}
-            <Toaster></Toaster>
+           <Toaster position="top-right" reverseOrder={false} />
             <div className="card-header py-3 d-flex justify-content-between align-items-center">
                 <h6 className="m-0 font-weight-bold text-primary">
                     <i className="fas fa-layer-group me-2"></i>

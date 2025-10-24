@@ -41,9 +41,7 @@ export default function MarcasPage() {
     return (
         <div className="card shadow mb-4">
             {/* Cabeçalho */}
-            <div>
-                <Toaster></Toaster>
-            </div>
+            <Toaster position="top-right" reverseOrder={false} />
             <div className="card-header py-3 d-flex justify-content-between align-items-center">
                 <h6 className="m-0 font-weight-bold text-primary">
                     <i className="fas fa-industry me-2"></i>

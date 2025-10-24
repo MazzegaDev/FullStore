@@ -40,9 +40,7 @@ export default function ProdutosPage() {
 
     return (
         <div className="card shadow mb-4">
-            <div>
-                <Toaster />
-            </div>
+            <Toaster position="top-right" reverseOrder={false} />
             <div className="card-header py-3 d-flex justify-content-between align-items-center">
                 <h6 className="m-0 font-weight-bold text-primary">
                     <i className="fas fa-boxes me-2"></i>

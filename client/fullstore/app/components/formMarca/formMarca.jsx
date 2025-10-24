@@ -33,7 +33,7 @@ export default function FormMarca() {
 
     return (
         <div className="container mt-5">
-            <Toaster position="top-right" />
+            <Toaster position="top-right" reverseOrder={false} />
 
             <div className="card shadow-lg border-0">
                 <div className="card-header bg-primary text-white">

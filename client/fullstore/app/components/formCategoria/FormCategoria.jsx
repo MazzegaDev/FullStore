@@ -35,7 +35,7 @@ export default function FormCategoria() {
 
     return (
         <div className="container mt-5">
-            <Toaster position="top-right" />
+            <Toaster position="top-right" reverseOrder={false} />
 
             <div className="row justify-content-center">
                 <div className="col-lg-6">
