@@ -12,11 +12,11 @@ export default function Main() {
                     amet ex iusto laborum laboriosam, aliquid molestiae eaque
                     fuga. Perspiciatis quidem laboriosam dignissimos natus.
                 </p>
-                <img src="\img\imgteste.jpg" alt="" width={320} />
+                <img src="\img\imgteste.jpg" alt=""/>
             </section>
             <Tittle titulo={"Teste"}></Tittle>
             <section>
-                <p>
+                <p className="texto">
                     Lorem, ipsum dolor sit amet consectetur adipisicing elit.
                     Perferendis sint qui neque exercitationem, expedita nemo
                     tenetur reiciendis veritatis, et placeat quibusdam. Nulla

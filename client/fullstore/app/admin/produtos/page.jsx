@@ -10,7 +10,7 @@ export default function ProdutosPage() {
 
     useEffect(() => {
         buscarProdutos();
-    }, [lista]); //<- quando a lista mudar ele chama a lista novamente
+    }, []); //<- quando a lista mudar ele chama a lista novamente
 
     useEffect(() => {
         deletarProduto();
