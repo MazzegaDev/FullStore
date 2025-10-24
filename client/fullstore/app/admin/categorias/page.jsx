@@ -9,6 +9,7 @@ export default function CategoriaPage() {
 
     useEffect(() => {
         buscaCategoria();
+        deletarCategoria();
     }, []);
 
     async function buscaCategoria() {
@@ -20,9 +21,7 @@ export default function CategoriaPage() {
         }
     }
 
-    useEffect(() => {
-        deletarCategoria();
-    },[]);
+
 
     async function deletarCategoria(obj){
         try {

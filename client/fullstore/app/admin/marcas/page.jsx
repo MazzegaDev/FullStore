@@ -10,6 +10,7 @@ export default function MarcasPage() {
 
     useEffect(() => {
         buscaMarcas();
+         deletarMarca();
     }, []);
 
     async function buscaMarcas() {
@@ -21,9 +22,7 @@ export default function MarcasPage() {
         }
     }
 
-    useEffect(() => {
-        deletarMarca();
-    }, []);
+   
 
     async function deletarMarca(obj){
         try {

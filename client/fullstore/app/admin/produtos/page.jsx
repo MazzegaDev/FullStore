@@ -10,11 +10,11 @@ export default function ProdutosPage() {
 
     useEffect(() => {
         buscarProdutos();
-    }, []); //<- quando a lista mudar ele chama a lista novamente
-
-    useEffect(() => {
         deletarProduto();
-    }, []);
+        //Podemos usar o mesmo effect para mais coisas
+    }, []); 
+
+    
     async function deletarProduto(obj) {
         try {
             //Desse objeto completo so recuperramos o d do produto
@@ -25,7 +25,7 @@ export default function ProdutosPage() {
                 toast.success(response.msg);
             }
         } catch (error) {
-            console.log(error)
+            console.log(error);
         }
     }
 
