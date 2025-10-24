@@ -44,6 +44,18 @@ export default class MarcaRepository{
         return null;
     }
 
+    async verificaProduto(id){
+        const sql = "select * from tb_produto where marc_id = ?";
+        const values = [id];
+
+        const rows = await this.#banco.ExecutaComando(sql, values);
+
+        if(rows.length > 0){
+            return true
+        }
+        return null;
+    }
+
     async deletar(id){
         const sql = "delete from tb_marca where marc_id = ?";
         const values = [id];

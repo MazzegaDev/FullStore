@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { apiClient } from "@/utils/apiClient";
 
 export default function CategoriaPage() {
     const [lista, setLista] = useState([]);
@@ -12,9 +13,8 @@ export default function CategoriaPage() {
 
     async function buscaCategoria() {
         try {
-            const response = await fetch("http://localhost:5000/categoria/");
-            const corpo = await response.json();
-            setLista(corpo);
+            const response = await apiClient.get("/categoria/");
+            setLista(response);
         } catch (error) {
             console.error("Erro ao buscar categorias:", error);
         }

@@ -71,10 +71,16 @@ export default class MarcaController {
         try {
             let { id } = req.params;
             if (await this.#mRepo.buscarId(id)) {
-                if (await this.#mRepo.deletar(id)) {
-                    return res.status(200).json({ msg: "Marca deletada!" });
+                if (await this.#mRepo.verificaProduto(id)) {
+                    return res.status(400).json({
+                        msg: "Não foi possivel deletar essa marca pois tem produtos associados a ela.",
+                    });
                 } else {
-                    throw new Error("Não foi possivel deletar a marca.");
+                    if (await this.#mRepo.deletar(id)) {
+                        return res.status(200).json({ msg: "Marca deletada!" });
+                    } else {
+                        throw new Error("Não foi possivel deletar a marca.");
+                    }
                 }
             } else {
                 return res
