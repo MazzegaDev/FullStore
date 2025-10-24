@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { apiClient } from "@/utils/apiClient";
-
+import toast, { Toaster } from "react-hot-toast";
 export default function CategoriaPage() {
     const [lista, setLista] = useState([]);
 
@@ -20,9 +20,26 @@ export default function CategoriaPage() {
         }
     }
 
+    useEffect(() => {
+        deletarCategoria();
+    },[]);
+
+    async function deletarCategoria(obj){
+        try {
+            let id = obj.cate_id;
+            const response = await apiClient.delete(`/categoria/${id}`);
+            if(response.msg){
+                toast.success(response.msg);
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     return (
         <div className="card shadow mb-4">
             {/* Cabeçalho */}
+            <Toaster></Toaster>
             <div className="card-header py-3 d-flex justify-content-between align-items-center">
                 <h6 className="m-0 font-weight-bold text-primary">
                     <i className="fas fa-layer-group me-2"></i>
@@ -55,7 +72,7 @@ export default function CategoriaPage() {
                                                 <button className="btn btn-sm btn-warning" title="Editar">
                                                     <i className="fas fa-edit"></i>
                                                 </button>
-                                                <button className="btn btn-sm btn-danger" title="Excluir">
+                                                <button className="btn btn-sm btn-danger" title="Excluir" onClick={() => deletarCategoria(obj)}>
                                                     <i className="fas fa-trash-alt"></i>
                                                 </button>
                                             </div>
