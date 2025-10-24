@@ -1,6 +1,7 @@
 import "./styleH.css";
 import Link from "next/link";
 
+
 export default function Header() {
     return (
         <header className="header">
@@ -9,6 +10,9 @@ export default function Header() {
                 <Link className="link"  href={""}>
                     Login
                 </Link>
+            </button>
+            <button className="carrinho">
+                Carrinho
             </button>
         </header>
     );

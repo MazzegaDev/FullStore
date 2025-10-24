@@ -21,6 +21,16 @@ body{
     background-color: #8390FA;
 }
 
+.carrinho{
+    padding: 0.5rem;
+    width: 15vh;
+    border: 2px solid #4765d3;
+    background-color: #4765d3;
+    border-radius: 25px;
+    color: white;
+}
+
+
 .link{
     text-decoration: none;
     color: white;
