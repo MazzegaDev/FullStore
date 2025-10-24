@@ -49,4 +49,56 @@ export default class CategoriaController {
                 .json({ msg: "Não foi possivel processar a requisição." });
         }
     }
+
+    async buscarId(req, res) {
+        try {
+            let {id} = req.params;
+            let categoria = await this.#cRepo.buscaId(id);
+            if(categoria){
+                return res.status(200).json(categoria)
+            }else{
+                return res.status(404).json({msg: "Categoria não encontrada."});
+            }
+
+        } catch (error) {
+            console.log(error);
+            return res
+                .status(500)
+                .json({ msg: "Não foi possivel processar a requisição." });
+        }
+    }
+
+    async deletar(req, res) {
+        try {
+            let { id } = req.params;
+            if (await this.#cRepo.buscaId(id)) {
+                if (await this.#cRepo.procuraProduto(id)) {
+                    return res
+                        .status(400)
+                        .json({
+                            msg: "Não foi possivel deletar essa categoria pois tem produtos associados a ela.",
+                        });
+                } else {
+                    if (await this.#cRepo.deletar(id)) {
+                        return res
+                            .status(200)
+                            .json({ msg: "Categoria deletada!" });
+                    } else {
+                        throw new Error(
+                            "Não foi possivel deletar a categoria."
+                        );
+                    }
+                }
+            } else {
+                return res
+                    .status(404)
+                    .json({ msg: "Categoria não encontrada para a exclusão." });
+            }
+        } catch (error) {
+            console.log(error);
+            return res
+                .status(500)
+                .json({ msg: "Não foi possivel processar a requisição." });
+        }
+    }
 }

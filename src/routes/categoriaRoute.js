@@ -37,4 +37,26 @@ router.get("/", (req, res) => {
     ctrl.listar(req, res);
 });
 
+router.get("/:id", (req, res) => {
+    // #swagger.tags = ['Categoria']
+    // #swagger.summary = 'Lista uma a categorias especifica'
+
+    /*
+        #swagger.responses[404] = {
+            description: "Nenhuma categoria para listar",
+            schema: {$ref: '#/components/schemas/erro'}
+        }
+    */
+    ctrl.buscarId(req, res);
+});
+
+router.delete("/:id", (req, res) => {
+    // #swagger.tags = ['Categoria']
+    // #swagger.summary = 'Deleta uma categoria'
+
+    
+    ctrl.deletar(req, res);
+});
+
+
 export default router;
