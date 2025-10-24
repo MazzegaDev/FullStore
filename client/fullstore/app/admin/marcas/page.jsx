@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { apiClient } from "@/utils/apiClient";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function MarcasPage() {
     const [lista, setLista] = useState([]);
@@ -12,17 +14,36 @@ export default function MarcasPage() {
 
     async function buscaMarcas() {
         try {
-            const response = await fetch("http://localhost:5000/marca/");
-            const corpo = await response.json();
-            setLista(corpo);
+            const response = await apiClient.get("/marca/");
+            setLista(response);
         } catch (error) {
             console.error("Erro ao buscar marcas:", error);
         }
     }
 
+    useEffect(() => {
+        deletarMarca();
+    }, []);
+
+    async function deletarMarca(obj){
+        try {
+            let id = obj.marc_id
+            let response = await apiClient.delete(`/marca/${id}`);
+            if(response.msg){
+                toast.success(response.msg)
+            }
+        } catch (error) {
+            console.log(error)
+        }
+        
+    }
+
     return (
         <div className="card shadow mb-4">
             {/* Cabeçalho */}
+            <div>
+                <Toaster></Toaster>
+            </div>
             <div className="card-header py-3 d-flex justify-content-between align-items-center">
                 <h6 className="m-0 font-weight-bold text-primary">
                     <i className="fas fa-industry me-2"></i>
@@ -71,6 +92,7 @@ export default function MarcasPage() {
                                                 </button>
                                                 <button
                                                     className="btn btn-sm btn-danger"
+                                                    onClick={() => deletarMarca(obj)}
                                                     title="Excluir"
                                                 >
                                                     <i className="fas fa-trash-alt"></i>
