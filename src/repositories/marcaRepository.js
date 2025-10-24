@@ -29,6 +29,23 @@ export default class MarcaRepository{
         return result;
     }
 
+    async buscarId(id){
+        const sql = "select * from tb_marca where marc_id = ?";
+        const values = [id];
+
+        const rows = await this.#banco.ExecutaComando(sql, values);
+
+        if(rows.length > 0){
+            const row = rows[0];
+            let marcas = this.toMap(row);
+            return marcas;
+
+        }
+        return null;
+    }
+
+    
+
     toMap(row){
         let marca = new Marca();
         marca.marc_id = row["marc_id"];

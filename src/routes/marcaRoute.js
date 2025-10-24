@@ -36,4 +36,17 @@ router.get("/", (req, res) => {
     ctrl.listar(req, res);
 });
 
+router.get("/:id", (req, res) => {
+    // #swagger.tags = ['Marca']
+    // #swagger.summary = 'Lista uma marca especifica'
+
+    /*
+        #swagger.responses[404] = {
+            description: "Nenhuma marca para listar",
+            schema: {$ref: '#/components/schemas/erro'}
+        }
+    */
+    ctrl.buscarId(req, res);
+});
+
 export default router;
