@@ -20,11 +20,9 @@ export default class MarcaController {
                     throw new Error("Não foi possivel cadastrar a marca.");
                 }
             } else {
-                return res
-                    .status(400)
-                    .json({
-                        msg: "A marca não pode conter informações invalidas.",
-                    });
+                return res.status(400).json({
+                    msg: "A marca não pode conter informações invalidas.",
+                });
             }
         } catch (error) {
             console.log(error);
@@ -60,6 +58,28 @@ export default class MarcaController {
                 return res.status(200).json(marca);
             } else {
                 return res.status(404).json({ msg: "Marca não encontrada." });
+            }
+        } catch (error) {
+            console.log(error);
+            return res
+                .status(500)
+                .json({ msg: "Não foi possivel processar a requisição." });
+        }
+    }
+
+    async deletar(req, res) {
+        try {
+            let { id } = req.params;
+            if (await this.#mRepo.buscarId(id)) {
+                if (await this.#mRepo.deletar(id)) {
+                    return res.status(200).json({ msg: "Marca deletada!" });
+                } else {
+                    throw new Error("Não foi possivel deletar a marca.");
+                }
+            } else {
+                return res
+                    .status(404)
+                    .json({ msg: "Marca não encontrada para a exclusão." });
             }
         } catch (error) {
             console.log(error);

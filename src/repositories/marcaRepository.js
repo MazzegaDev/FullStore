@@ -44,6 +44,14 @@ export default class MarcaRepository{
         return null;
     }
 
+    async deletar(id){
+        const sql = "delete from tb_marca where marc_id = ?";
+        const values = [id];
+
+        const result = await this.#banco.ExecutaComandoNonQuery(sql, values);
+
+        return result;
+    }
     
 
     toMap(row){

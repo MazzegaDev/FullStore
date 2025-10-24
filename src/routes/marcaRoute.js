@@ -49,4 +49,11 @@ router.get("/:id", (req, res) => {
     ctrl.buscarId(req, res);
 });
 
+router.delete("/:id", (req, res) => {
+    // #swagger.tags = ['Marca']
+    // #swagger.summary = 'Deleta uma marca'
+    
+    ctrl.deletar(req, res);
+});
+
 export default router;
