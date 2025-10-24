@@ -4,17 +4,8 @@ import Tittle from "../tittle/Tittle";
 export default function Main() {
     return (
         <main>
-            <Tittle titulo={"Sobre a loja"}></Tittle>
-            <section className="section-sobre">
-                <p className="texto">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                    Soluta, blanditiis enim fugiat autem deserunt animi quia
-                    amet ex iusto laborum laboriosam, aliquid molestiae eaque
-                    fuga. Perspiciatis quidem laboriosam dignissimos natus.
-                </p>
-                <img src="\img\imgteste.jpg" alt=""/>
-            </section>
-            <Tittle titulo={"Teste"}></Tittle>
+            
+            <Tittle titulo={"Confira nossos produtos"}></Tittle>
             <section>
                 <p className="texto">
                     Lorem, ipsum dolor sit amet consectetur adipisicing elit.
