@@ -9,7 +9,6 @@ export default function CategoriaPage() {
 
     useEffect(() => {
         buscaCategoria();
-        deletarCategoria();
     }, []);
 
     async function buscaCategoria() {
@@ -27,6 +26,8 @@ export default function CategoriaPage() {
         try {
             let id = obj.cate_id;
             const response = await apiClient.delete(`/categoria/${id}`);
+            setLista(lista);
+            buscaCategoria();
             if(response.msg){
                 toast.success(response.msg);
             }
@@ -41,7 +42,7 @@ export default function CategoriaPage() {
            <Toaster position="top-right" reverseOrder={false} />
             <div className="card-header py-3 d-flex justify-content-between align-items-center">
                 <h6 className="m-0 font-weight-bold text-primary">
-                    <i className="fas fa-layer-group me-2"></i>
+                    <i className="fas fa-list-alt"></i>
                     Categorias Cadastradas
                 </h6>
                 <Link href="/admin/categorias/cadastrar" className="btn btn-primary btn-sm shadow-sm">

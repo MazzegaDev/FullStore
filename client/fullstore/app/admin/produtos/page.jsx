@@ -10,17 +10,17 @@ export default function ProdutosPage() {
 
     useEffect(() => {
         buscarProdutos();
-        deletarProduto();
-        //Podemos usar o mesmo effect para mais coisas
     }, []); 
 
+    // buscarProdutos()
     
     async function deletarProduto(obj) {
         try {
             //Desse objeto completo so recuperramos o d do produto
             let id = obj.prod_id;
-            console.log(id);
             let response = await apiClient.delete(`/produto/${id}`);
+            setLista(lista);
+            buscarProdutos();
             if (response.msg) {
                 toast.success(response.msg);
             }
@@ -43,7 +43,7 @@ export default function ProdutosPage() {
             <Toaster position="top-right" reverseOrder={false} />
             <div className="card-header py-3 d-flex justify-content-between align-items-center">
                 <h6 className="m-0 font-weight-bold text-primary">
-                    <i className="fas fa-boxes me-2"></i>
+                    <i className="fas fa-box-open"></i>
                     Produtos Cadastrados
                 </h6>
                 <Link
@@ -105,12 +105,6 @@ export default function ProdutosPage() {
                                         <td>{obj.cate_id?.cate_nome ?? "-"}</td>
                                         <td>
                                             <div className="d-flex justify-content-center gap-2">
-                                                <button
-                                                    className="btn btn-sm btn-info"
-                                                    title="Ver detalhes"
-                                                >
-                                                    <i className="fas fa-eye"></i>
-                                                </button>
                                                 <Link
                                                     href={
                                                         "/admin/produtos/alterar/" +

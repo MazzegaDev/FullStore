@@ -42,7 +42,7 @@ export default function FormCategoria() {
                     <div className="card shadow-lg border-0 rounded-3">
                         <div className="card-header bg-primary text-white py-3">
                             <h4 className="mb-0">
-                                <i className="fas fa-tags me-2"></i>
+                                <i className="fas fa-list-alt"></i>
                                 Cadastro de Categoria
                             </h4>
                         </div>

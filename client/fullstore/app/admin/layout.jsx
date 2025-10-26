@@ -1,7 +1,7 @@
 import Link from "next/link";
 import "../../public/css/sb-admin-2.min.css";
 import "../../public/css/fontawesome-free/css/all.min.css";
-import "../../public/css/adminAnimations.css" // novo CSS com as animações
+import "../../public/css/adminAnimations.css"; // novo CSS com as animações
 
 export default function AdminLayout({ children }) {
     return (
@@ -19,9 +19,7 @@ export default function AdminLayout({ children }) {
                     <div className="sidebar-brand-icon rotate-n-15">
                         <i className="fas fa-laugh-wink"></i>
                     </div>
-                    <div className="sidebar-brand-text mx-2">
-                        FullStore
-                    </div>
+                    <div className="sidebar-brand-text mx-2">FullStore</div>
                 </a>
 
                 <hr className="sidebar-divider my-0" />
@@ -59,6 +57,22 @@ export default function AdminLayout({ children }) {
                     <Link className="nav-link" href="/admin/categorias">
                         <i className="fas fa-list-alt"></i>
                         <span>Categorias</span>
+                    </Link>
+                </li>
+
+                {/* Usuarios */}
+                <li className="nav-item icon-animate">
+                    <Link className="nav-link" href="/admin/usuarios">
+                        <i className="fas fa-user"></i>
+                        <span>Usuarios</span>
+                    </Link>
+                </li>
+
+                {/* Perfils */}
+                <li className="nav-item icon-animate">
+                    <Link className="nav-link" href="/admin/perfils">
+                        <i className="fas fa-users"></i>
+                        <span>Perfils</span>
                     </Link>
                 </li>
             </ul>

@@ -10,7 +10,6 @@ export default function MarcasPage() {
 
     useEffect(() => {
         buscaMarcas();
-         deletarMarca();
     }, []);
 
     async function buscaMarcas() {
@@ -28,6 +27,8 @@ export default function MarcasPage() {
         try {
             let id = obj.marc_id
             let response = await apiClient.delete(`/marca/${id}`);
+            setLista(lista);
+            buscaMarcas();
             if(response.msg){
                 toast.success(response.msg)
             }
@@ -43,7 +44,7 @@ export default function MarcasPage() {
             <Toaster position="top-right" reverseOrder={false} />
             <div className="card-header py-3 d-flex justify-content-between align-items-center">
                 <h6 className="m-0 font-weight-bold text-primary">
-                    <i className="fas fa-industry me-2"></i>
+                    <i className="fas fa-tags me-2"></i>
                     Marcas Cadastradas
                 </h6>
                 <Link
