@@ -40,6 +40,15 @@ const doc = {
                     cate_id: 1,
                 },
             },
+            perfil: {
+                per_adm: true,
+                per_desc: "gerente da loja",
+            },
+            perfilAlter:{
+                per_id: 1,
+                per_adm: false,
+                per_desc: "Funcionario",
+            },
         },
     },
 };
