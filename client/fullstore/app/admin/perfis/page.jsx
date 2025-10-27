@@ -42,7 +42,7 @@ export default function PerfilPage() {
 
             <div className="card-header py-3 d-flex justify-content-between align-items-center">
                 <h6 className="m-0 font-weight-bold text-primary">
-                    <i className="fas fa-users-cog me-2"></i>
+                   <i className="fas fa-address-card"></i>
                     Perfis Cadastrados
                 </h6>
                 <Link

@@ -74,6 +74,13 @@ export default function AdminLayout({ children }) {
                         <span>Usuarios</span>
                     </Link>
                 </li>
+
+                <li className="nav-item icon-animate">
+                    <Link className="nav-link" href="/">
+                        <i className="fas fa-reply"></i>
+                        <span>Pagina inicial</span>
+                    </Link>
+                </li>
             </ul>
 
             {/* Conteúdo principal */}
