@@ -51,7 +51,7 @@ router.get("/:id", (req, res) => {
     ctrl.buscarId(req, res);
 });
 
-router.put("/:id", (req, res) => {
+router.put("/", (req, res) => {
     // #swagger.tags = ['Perfil']
     // #swagger.summary = 'Altera um perfil'
 

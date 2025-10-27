@@ -45,9 +45,9 @@ const doc = {
                 per_desc: "gerente da loja",
             },
             perfilAlter:{
-                per_id: 1,
-                per_adm: false,
-                per_desc: "Funcionario",
+                id: 1,
+                adm: false,
+                desc: "Funcionario",
             },
         },
     },

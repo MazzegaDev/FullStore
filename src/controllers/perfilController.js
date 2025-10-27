@@ -70,9 +70,9 @@ export default class PerfilController {
     async alterar(req, res) {
         try {
             let { id, desc, adm } = req.body;
-            if (id && desc && adm) {
+            if (id && desc) {
                 if (await this.#pRepo.buscarId(id)) {
-                    let perfil = new Perfil(0, adm, desc);
+                    let perfil = new Perfil(id, adm, desc);
                     if (await this.#pRepo.alterar(perfil)) {
                         return res
                             .status(200)
