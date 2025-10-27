@@ -59,11 +59,11 @@ export default function AdminLayout({ children }) {
                         <span>Categorias</span>
                     </Link>
                 </li>
-                {/* Perfils */}
+                {/* Perfis */}
                 <li className="nav-item icon-animate">
-                    <Link className="nav-link" href="/admin/perfils">
+                    <Link className="nav-link" href="/admin/perfis">
                         <i className="fas fa-address-card"></i>
-                        <span>Perfils</span>
+                        <span>Perfis</span>
                     </Link>
                 </li>
 

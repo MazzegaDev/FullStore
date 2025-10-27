@@ -41,8 +41,8 @@ const doc = {
                 },
             },
             perfil: {
-                per_adm: true,
-                per_desc: "gerente da loja",
+                adm: true,
+                desc: "gerente da loja",
             },
             perfilAlter:{
                 id: 1,
