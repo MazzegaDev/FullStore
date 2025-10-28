@@ -36,13 +36,15 @@ export default function FormProduto() {
         ) {
             try {
                 const response = await apiClient.post("/produto", produto);
-                
+
                 if (response.msg) {
                     toast.success(response.msg);
+                    nomeRef.current.value = "";
+                    quantRef.current.value = "";
+                    precoRef.current.value = "";
                 }
             } catch (error) {
                 console.error(error);
-
             }
         } else {
             toast.error("Preencha todos os campos corretamente!");
@@ -99,7 +101,6 @@ export default function FormProduto() {
                                 className="form-control shadow-sm"
                                 id="nome"
                                 ref={nomeRef}
-
                                 placeholder="Ex: Notebook, Camisa, Celular..."
                             />
                         </div>

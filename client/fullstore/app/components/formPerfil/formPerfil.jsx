@@ -1,9 +1,44 @@
 "use client";
 
+import { apiClient } from "@/utils/apiClient";
 import Link from "next/link";
-import { Toaster } from "react-hot-toast";
+import { useRef } from "react";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function FormPerfil() {
+
+    let descRef = useRef("");
+    let admRef = useRef("");
+
+    async function handleSubmit(e){
+
+        e.preventDefault()
+
+        let desc = descRef.current.value.trim();
+        let adm = admRef.current.value;
+
+        if(!desc && !adm){
+            toast.error("O perfil não pode conter dados invalidos.");
+        }
+
+        const obj = {
+            desc,
+            adm,
+        }
+
+        try {
+            const response = await apiClient.post("/perfil", obj);
+            if(response.msg){
+                toast.success(response.msg);
+                descRef.current.value = "";
+            }
+        } catch (error) {
+            console.log(error);
+            toast.error("Erro ao cadastrar perfil.")
+        }
+
+    }
+
     return (
         <div className="container mt-5">
             <Toaster position="top-right" reverseOrder={false} />
@@ -32,6 +67,7 @@ export default function FormPerfil() {
                                     id="desc"
                                     className="form-control shadow-sm"
                                     placeholder="Digite a descrição do perfil"
+                                    ref={descRef}
                                 />
                             </div>
 
@@ -47,7 +83,7 @@ export default function FormPerfil() {
                                 <select
                                     id="adm"
                                     className="form-select shadow-sm rounded-3 border-secondary-subtle py-2 pe-5"
-                                    
+                                    ref={admRef}
                                     defaultValue="0"
                                 >
                                     <option value="1">Sim</option>
@@ -69,6 +105,7 @@ export default function FormPerfil() {
                                 <button
                                     type="submit"
                                     className="btn btn-success btn-icon-split shadow-sm"
+                                    onClick={handleSubmit}
                                 >
                                     <span className="icon text-white-50">
                                         <i className="fas fa-save"></i>

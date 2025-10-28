@@ -721,11 +721,11 @@
       "perfil": {
         "type": "object",
         "properties": {
-          "per_adm": {
+          "adm": {
             "type": "boolean",
             "example": true
           },
-          "per_desc": {
+          "desc": {
             "type": "string",
             "example": "gerente da loja"
           }

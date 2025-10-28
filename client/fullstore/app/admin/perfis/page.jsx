@@ -8,6 +8,8 @@ import toast, { Toaster } from "react-hot-toast";
 export default function PerfilPage() {
     const [lista, setLista] = useState([]);
 
+   
+
     useEffect(() => {
         buscarPerfis();
     }, []);
