@@ -89,7 +89,7 @@ export default function FormProduto() {
                 </div>
 
                 <div className="card-body">
-                    <form className="row g-3" onSubmit={handleSubmit}>
+                    <div className="row g-3">    
                         {/* Produto */}
                         <div className="col-md-6">
                             <label
@@ -212,10 +212,10 @@ export default function FormProduto() {
                                 <span className="icon text-white-50">
                                     <i className="fas fa-save"></i>
                                 </span>
-                                <span className="text">Gravar</span>
+                                <span className="text" onClick={handleSubmit}>Gravar</span>
                             </button>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>

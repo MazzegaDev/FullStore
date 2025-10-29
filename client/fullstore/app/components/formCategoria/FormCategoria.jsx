@@ -48,7 +48,7 @@ export default function FormCategoria() {
                         </div>
 
                         <div className="card-body p-4">
-                            <form onSubmit={handleSubmit}>
+                            <div>
                                 <div className="mb-3">
                                     <label htmlFor="nome" className="form-label fw-semibold">
                                         <i className="fas fa-pen me-2 text-secondary"></i>
@@ -80,11 +80,11 @@ export default function FormCategoria() {
                                         <span className="icon text-white-50">
                                             <i className="fas fa-save"></i>
                                         </span>
-                                        <span className="text">Gravar</span>
+                                        <span className="text" onClick={handleSubmit}>Gravar</span>
                                     </button>
 
                                 </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>

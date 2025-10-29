@@ -4,39 +4,37 @@ import { apiClient } from "@/utils/apiClient";
 import Link from "next/link";
 import { useRef } from "react";
 import toast, { Toaster } from "react-hot-toast";
+import "../../..//public/css/CadastroPage.css";
 
 export default function FormPerfil() {
-
     let descRef = useRef("");
     let admRef = useRef("");
 
-    async function handleSubmit(e){
-
-        e.preventDefault()
+    async function handleSubmit(e) {
+        e.preventDefault();
 
         let desc = descRef.current.value.trim();
         let adm = admRef.current.value;
 
-        if(!desc && !adm){
+        if (!desc && !adm) {
             toast.error("O perfil não pode conter dados invalidos.");
         }
 
         const obj = {
             desc,
             adm,
-        }
+        };
 
         try {
             const response = await apiClient.post("/perfil", obj);
-            if(response.msg){
+            if (response.msg) {
                 toast.success(response.msg);
                 descRef.current.value = "";
             }
         } catch (error) {
             console.log(error);
-            toast.error("Erro ao cadastrar perfil.")
+            toast.error("Erro ao cadastrar perfil.");
         }
-
     }
 
     return (
@@ -75,20 +73,22 @@ export default function FormPerfil() {
                                 <label
                                     htmlFor="adm"
                                     className="form-label fw-semibold"
-                                    style={ {paddingRight: 10}}
+                                    style={{ paddingRight: 10 }}
                                 >
                                     <i className="fas fa-user-cog me-2 text-secondary"></i>
                                     Perfil Administrador?
                                 </label>
-                                <select
-                                    id="adm"
-                                    className="form-select shadow-sm rounded-3 border-secondary-subtle py-2 pe-5"
-                                    ref={admRef}
-                                    defaultValue="0"
-                                >
-                                    <option value="1">Sim</option>
-                                    <option value="0">Não</option>
-                                </select>
+                                <div className="custom-select-wrapper">
+                                    <select
+                                        id="adm"
+                                       className="form-select shadow-sm"
+                                        ref={admRef}
+                                        defaultValue="0"
+                                    >
+                                        <option value="1">Sim</option>
+                                        <option value="0">Não</option>
+                                    </select>
+                                </div>
                             </div>
 
                             <div className="d-flex justify-content-between mt-4">

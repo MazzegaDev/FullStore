@@ -147,7 +147,7 @@ export default function AdminLayout({ children }) {
                 <footer className="sticky-footer bg-white">
                     <div className="container my-auto">
                         <div className="copyright text-center my-auto">
-                            <span>Copyright &copy; PFS² 2025</span>
+                            <span>Copyright &copy; MazzegaDev</span>
                         </div>
                     </div>
                 </footer>

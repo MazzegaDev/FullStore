@@ -19,7 +19,6 @@ export default function ProdutosPage() {
             //Desse objeto completo so recuperramos o d do produto
             let id = obj.prod_id;
             let response = await apiClient.delete(`/produto/${id}`);
-            setLista(lista);
             buscarProdutos();
             if (response.msg) {
                 toast.success(response.msg);

@@ -49,7 +49,7 @@ export default function FormMarca() {
                         </div>
 
                         <div className="card-body p-4">
-                            <form onSubmit={handleSubmit}>
+                            <div>
                                 <div className="mb-3">
                                     <label
                                         htmlFor="nome"
@@ -85,10 +85,10 @@ export default function FormMarca() {
                                         <span className="icon text-white-50">
                                             <i className="fas fa-save"></i>
                                         </span>
-                                        <span className="text">Gravar</span>
+                                        <span className="text" onClick={handleSubmit}>Gravar</span>
                                     </button>
                                 </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>

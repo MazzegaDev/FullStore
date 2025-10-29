@@ -27,7 +27,6 @@ export default function MarcasPage() {
         try {
             let id = obj.marc_id
             let response = await apiClient.delete(`/marca/${id}`);
-            setLista(lista);
             buscaMarcas();
             if(response.msg){
                 toast.success(response.msg)

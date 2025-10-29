@@ -26,7 +26,6 @@ export default function CategoriaPage() {
         try {
             let id = obj.cate_id;
             const response = await apiClient.delete(`/categoria/${id}`);
-            setLista(lista);
             buscaCategoria();
             if(response.msg){
                 toast.success(response.msg);

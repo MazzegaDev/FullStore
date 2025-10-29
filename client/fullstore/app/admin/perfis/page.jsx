@@ -34,7 +34,7 @@ export default function PerfilPage() {
             }
         } catch (error) {
             console.log(error);
-            toast.error(error);
+           
         }
     }
 
