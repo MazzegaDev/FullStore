@@ -44,10 +44,27 @@ const doc = {
                 adm: true,
                 desc: "gerente da loja",
             },
-            perfilAlter:{
+            perfilAlter: {
                 id: 1,
                 adm: false,
                 desc: "Funcionario",
+            },
+            usuario: {
+                nome: "Eduardo",
+                email: "edu@gmail.com",
+                senha: "senhasenha123",
+                idP: {
+                    per_id: 4
+                }
+            },
+            usuarioAlter: {
+                id: 2,
+                nome: "Eduardo",
+                email: "edu@gmail.com",
+                senha: "senhasenha123",
+                idP: {
+                    per_id: 1
+                }
             },
         },
     },

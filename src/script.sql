@@ -26,7 +26,10 @@ create table tb_categoria(
 -- Nao criadas
 create table tb_usuario(
 	usu_id int not null primary key auto_increment,
-    usu_nome varchar(50) not null
+    usu_nome varchar(50) not null,
+    per_id int,
+    
+    constraint fk_per_id foreign key (per_id) references tb_perfil(per_id)
 );
 
 create table tb_perfil(

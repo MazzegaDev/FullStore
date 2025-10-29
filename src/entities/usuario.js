@@ -1,36 +1,50 @@
 import Base from "./base.js";
 
-export default class Usuario extends Base{
+export default class Usuario extends Base {
     #usu_id;
     #usu_nome;
+    #usu_email;
+    #usu_senha;
     #per_id;
 
-    constructor(usu_id, usu_nome, per_id){
+    constructor(usu_id, usu_nome, usu_email, usu_senha, per_id) {
         super();
         this.#usu_id = usu_id;
         this.#usu_nome = usu_nome;
+        this.#usu_email = usu_email;
+        this.#usu_senha = usu_senha;
         this.#per_id = per_id;
     }
 
-
-    get usu_id(){
+    get usu_id() {
         return this.#usu_id;
     }
-    get usu_nome(){
+    get usu_nome() {
         return this.#usu_nome;
     }
-    get per_id(){
+    get usu_email() {
+        return this.#usu_email;
+    }
+    get usu_senha() {
+        return this.#usu_senha;
+    }
+    get per_id() {
         return this.#per_id;
     }
 
-    set usu_id(id){
+    set usu_id(id) {
         this.#usu_id = id;
     }
-    set usu_nome(nome){
+    set usu_nome(nome) {
         this.#usu_nome = nome;
     }
-    set per_id(id){
+    set usu_email(email) {
+        this.#usu_email = email;
+    }
+    set usu_senha(senha) {
+        this.#usu_senha = senha;
+    }
+    set per_id(id) {
         this.#per_id = id;
     }
-
 }
