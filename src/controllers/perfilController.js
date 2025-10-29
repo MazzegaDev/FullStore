@@ -102,13 +102,19 @@ export default class PerfilController {
         try {
             let { id } = req.params;
             if (await this.#pRepo.buscarId(id)) {
-                if (await this.#pRepo.deletar(id)) {
-                    return res.status(200).json({ msg: "Produto deletado!" });
+                if (await this.#pRepo.verificaUsuario(id)) {
+                    return res.status(400).json({msg: "Não foi possivel deletar esse perfil pois tem usuarios associados a ele.",})
                 } else {
-                    throw new Error("Não foi possivel deletar o produto.");
+                    if (await this.#pRepo.deletar(id)) {
+                        return res
+                            .status(200)
+                            .json({ msg: "Perfil deletado!" });
+                    } else {
+                        throw new Error("Não foi possivel deletar o perfil.");
+                    }
                 }
             } else {
-                return res.status(404).json({ msg: "Produto não encontrado." });
+                return res.status(404).json({ msg: "Perfil não encontrado." });
             }
         } catch (error) {
             console.log(error);

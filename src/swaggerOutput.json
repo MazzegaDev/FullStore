@@ -590,6 +590,9 @@
           "200": {
             "description": "OK"
           },
+          "400": {
+            "description": "Bad Request"
+          },
           "404": {
             "description": "Not Found"
           },
@@ -938,7 +941,7 @@
             "properties": {
               "per_id": {
                 "type": "number",
-                "example": 1
+                "example": 4
               }
             }
           }

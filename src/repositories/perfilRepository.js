@@ -44,6 +44,18 @@ export default class PerfilRepository{
         return null;
     }
 
+    async verificaUsuario(id){
+        const sql = "select * from tb_usuario where per_id = ?";
+        const values = [id];
+
+        const rows = await this.#banco.ExecutaComando(sql, values);
+        if(rows.length > 0){
+            return true;
+        }
+
+        return null;
+    }
+
     async alterar(perfil){
         const sql = "update tb_perfil set per_adm = ?, per_desc = ? where per_id = ?";
         const values = [perfil.per_adm, perfil.per_desc, perfil.per_id];
