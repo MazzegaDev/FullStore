@@ -42,6 +42,8 @@ export default function FormProduto() {
                     nomeRef.current.value = "";
                     quantRef.current.value = "";
                     precoRef.current.value = "";
+                    marcaRef.current.value = 0;
+                    categoriaRef.current.value = 0;
                 }
             } catch (error) {
                 console.error(error);
