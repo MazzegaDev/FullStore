@@ -12,6 +12,7 @@ export default function FormUsuario() {
     const nomeRef = useRef("");
     const emailRef = useRef("");
     const senhaRef = useRef("");
+    const saldoRef = useRef("");
     const perfilRef = useRef("");
 
 
@@ -35,6 +36,7 @@ export default function FormUsuario() {
         const nome = nomeRef.current.value.trim();
         const email = emailRef.current.value.trim();
         const senha = senhaRef.current.value.trim();
+        const saldo = Number(saldoRef.current.value);
         const idP = {per_id: parseInt(perfilRef.current.value)}
 
         if(!nome && !email && !senha && !idP){
@@ -45,6 +47,7 @@ export default function FormUsuario() {
             nome,
             email,
             senha,
+            saldo,
             idP,
         }
 
@@ -55,6 +58,7 @@ export default function FormUsuario() {
                 nomeRef.current.value = "";
                 emailRef.current.value = "";
                 senhaRef.current.value = "";
+                saldoRef.current.value = 0;
                 perfilRef.current.value = 0;
             }
         } catch (error) {
@@ -105,6 +109,22 @@ export default function FormUsuario() {
                                 id="email"
                                 ref={emailRef}
                                 placeholder="Digite o email"
+                            />
+                        </div>
+
+                        <div className="col-md-6">
+                            <label
+                                htmlFor="saldo"
+                                className="form-label fw-semibold"
+                            >
+                                <i className="fas fa-money-bill"></i> Saldo
+                            </label>
+                            <input
+                                type="number"
+                                className="form-control shadow-sm"
+                                id="email"
+                                ref={saldoRef}
+                               
                             />
                         </div>
 
