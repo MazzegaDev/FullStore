@@ -116,7 +116,7 @@ export default function UsuariosPage() {
                                 ))
                             ) : (
                                 <tr>
-                                    <td colSpan="5" className="text-muted py-4">
+                                    <td colSpan="6" className="text-muted py-4">
                                         <i className="fas fa-info-circle me-2"></i>
                                         Nenhum usuário cadastrado.
                                     </td>

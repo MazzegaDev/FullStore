@@ -121,7 +121,7 @@ export default function PerfilPage() {
                                 ))
                             ) : (
                                 <tr>
-                                    <td colSpan="3" className="text-muted py-4">
+                                    <td colSpan="4" className="text-muted py-4">
                                         <i className="fas fa-info-circle me-2"></i>
                                         Nenhum perfil encontrado.
                                     </td>
