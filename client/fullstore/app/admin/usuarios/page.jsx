@@ -15,7 +15,9 @@ export default function UsuariosPage() {
     async function buscarUsuarios() {
         try {
             const response = await apiClient.get("/usuario");
-            setLista(response);
+            if(response.msg){
+                setLista(response);
+            }
         } catch (error) {
             console.log(error);
             toast.error("Erro ao buscar usuários!");
