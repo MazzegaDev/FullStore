@@ -14,9 +14,8 @@ export default function CategoriaPage() {
     async function buscaCategoria() {
         try {
             const response = await apiClient.get("/categoria/");
-            if (response.msg) {
-                setLista(response);
-            }
+
+            setLista(response);
         } catch (error) {
             console.error("Erro ao buscar categorias:", error);
         }

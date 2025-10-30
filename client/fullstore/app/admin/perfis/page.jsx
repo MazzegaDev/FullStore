@@ -15,9 +15,8 @@ export default function PerfilPage() {
     async function buscarPerfis() {
         try {
             const response = await apiClient.get("/perfil");
-            if (response.msg) {
-                setLista(response);
-            }
+            setLista(response);
+            
         } catch (error) {
             console.error("Erro ao buscar perfis:", error);
             toast.error("Erro ao buscar perfis!");

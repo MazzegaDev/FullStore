@@ -15,9 +15,8 @@ export default function MarcasPage() {
     async function buscaMarcas() {
         try {
             const response = await apiClient.get("/marca/");
-            if (response.msg) {
-                setLista(response);
-            }
+
+            setLista(response);
         } catch (error) {
             console.error("Erro ao buscar marcas:", error);
         }

@@ -31,9 +31,8 @@ export default function ProdutosPage() {
     async function buscarProdutos() {
         try {
             const response = await apiClient.get("/produto");
-            if (response.msg) {
-                setLista(response);
-            }
+
+            setLista(response);
         } catch (error) {
             console.error("Erro ao buscar produtos:", error);
         }
