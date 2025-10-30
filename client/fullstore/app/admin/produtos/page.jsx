@@ -10,10 +10,10 @@ export default function ProdutosPage() {
 
     useEffect(() => {
         buscarProdutos();
-    }, []); 
+    }, []);
 
     // buscarProdutos()
-    
+
     async function deletarProduto(obj) {
         try {
             //Desse objeto completo so recuperramos o d do produto
@@ -31,7 +31,7 @@ export default function ProdutosPage() {
     async function buscarProdutos() {
         try {
             const response = await apiClient.get("/produto");
-            if(response.msg){
+            if (response.msg) {
                 setLista(response);
             }
         } catch (error) {

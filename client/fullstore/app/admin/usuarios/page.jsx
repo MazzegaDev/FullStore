@@ -15,7 +15,7 @@ export default function UsuariosPage() {
     async function buscarUsuarios() {
         try {
             const response = await apiClient.get("/usuario");
-            if(response.msg){
+            if (response.msg) {
                 setLista(response);
             }
         } catch (error) {
@@ -29,7 +29,7 @@ export default function UsuariosPage() {
             let id = obj.usu_id;
             const response = await apiClient.delete(`/usuario/${id}`);
             buscarUsuarios();
-            if(response.msg){
+            if (response.msg) {
                 toast.success(response.msg);
             }
         } catch (error) {
@@ -104,7 +104,9 @@ export default function UsuariosPage() {
                                                 <button
                                                     className="btn btn-sm btn-danger"
                                                     title="Excluir"
-                                                    onClick={() => deletarUsuario(obj)}
+                                                    onClick={() =>
+                                                        deletarUsuario(obj)
+                                                    }
                                                 >
                                                     <i className="fas fa-trash-alt"></i>
                                                 </button>

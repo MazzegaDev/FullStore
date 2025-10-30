@@ -15,29 +15,25 @@ export default function MarcasPage() {
     async function buscaMarcas() {
         try {
             const response = await apiClient.get("/marca/");
-            if(response.msg){
+            if (response.msg) {
                 setLista(response);
-                
             }
         } catch (error) {
             console.error("Erro ao buscar marcas:", error);
         }
     }
 
-   
-
-    async function deletarMarca(obj){
+    async function deletarMarca(obj) {
         try {
-            let id = obj.marc_id
+            let id = obj.marc_id;
             let response = await apiClient.delete(`/marca/${id}`);
             buscaMarcas();
-            if(response.msg){
-                toast.success(response.msg)
+            if (response.msg) {
+                toast.success(response.msg);
             }
         } catch (error) {
-            console.log(error)
+            console.log(error);
         }
-        
     }
 
     return (
@@ -92,7 +88,9 @@ export default function MarcasPage() {
                                                 </button>
                                                 <button
                                                     className="btn btn-sm btn-danger"
-                                                    onClick={() => deletarMarca(obj)}
+                                                    onClick={() =>
+                                                        deletarMarca(obj)
+                                                    }
                                                     title="Excluir"
                                                 >
                                                     <i className="fas fa-trash-alt"></i>

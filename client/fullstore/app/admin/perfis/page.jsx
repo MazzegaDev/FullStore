@@ -8,8 +8,6 @@ import toast, { Toaster } from "react-hot-toast";
 export default function PerfilPage() {
     const [lista, setLista] = useState([]);
 
-   
-
     useEffect(() => {
         buscarPerfis();
     }, []);
@@ -17,7 +15,7 @@ export default function PerfilPage() {
     async function buscarPerfis() {
         try {
             const response = await apiClient.get("/perfil");
-            if(response.msg){
+            if (response.msg) {
                 setLista(response);
             }
         } catch (error) {
@@ -36,7 +34,6 @@ export default function PerfilPage() {
             }
         } catch (error) {
             console.log(error);
-           
         }
     }
 
@@ -46,7 +43,7 @@ export default function PerfilPage() {
 
             <div className="card-header py-3 d-flex justify-content-between align-items-center">
                 <h6 className="m-0 font-weight-bold text-primary">
-                   <i className="fas fa-address-card"></i>
+                    <i className="fas fa-address-card"></i>
                     Perfis Cadastrados
                 </h6>
                 <Link
@@ -112,7 +109,9 @@ export default function PerfilPage() {
                                                 <button
                                                     className="btn btn-sm btn-danger"
                                                     title="Excluir"
-                                                    onClick={() => deletarPerfil(obj)}
+                                                    onClick={() =>
+                                                        deletarPerfil(obj)
+                                                    }
                                                 >
                                                     <i className="fas fa-trash-alt"></i>
                                                 </button>
