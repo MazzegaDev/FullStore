@@ -22,6 +22,19 @@ export default function UsuariosPage() {
         }
     }
 
+    async function deletarUsuario(obj) {
+        try {
+            let id = obj.usu_id;
+            const response = await apiClient.delete(`/usuario/${id}`);
+            buscarUsuarios();
+            if(response.msg){
+                toast.success(response.msg);
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     return (
         <div className="card shadow mb-4">
             <Toaster position="top-right" reverseOrder={false} />
@@ -89,6 +102,7 @@ export default function UsuariosPage() {
                                                 <button
                                                     className="btn btn-sm btn-danger"
                                                     title="Excluir"
+                                                    onClick={() => deletarUsuario(obj)}
                                                 >
                                                     <i className="fas fa-trash-alt"></i>
                                                 </button>
