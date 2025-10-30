@@ -12,24 +12,31 @@ export default class UsuarioController {
 
     async cadastrar(req, res) {
         try {
-            let { nome, email, senha, idP } = req.body;
-            if (nome && email && senha && idP.per_id) {
+            let { nome, email, senha, saldo, idP } = req.body;
+            if (nome && email && senha && saldo && idP.per_id) {
                 if (await this.#uRepo.procurarPerfil(idP.per_id)) {
-                    let usuario = new Usuario(
-                        0,
-                        nome,
-                        email,
-                        senha,
-                        new Perfil(idP.per_id)
-                    );
-                    if (await this.#uRepo.cadastrar(usuario)) {
-                        return res
-                            .status(200)
-                            .json({ msg: "Usuario cadastrado com sucesso!" });
-                    } else {
-                        throw new Error(
-                            "Não foi possivel cadastrar o usuario."
+                    if (!isNaN(saldo) && saldo) {
+                        let usuario = new Usuario(
+                            0,
+                            nome,
+                            email,
+                            senha,
+                            saldo,
+                            new Perfil(idP.per_id)
                         );
+                        if (await this.#uRepo.cadastrar(usuario)) {
+                            return res.status(200).json({
+                                msg: "Usuario cadastrado com sucesso!",
+                            });
+                        } else {
+                            throw new Error(
+                                "Não foi possivel cadastrar o usuario."
+                            );
+                        }
+                    } else {
+                        return res
+                            .status(400)
+                            .json({ msg: "O saldo informado está invalido." });
                     }
                 } else {
                     return res.status(404).json({
@@ -78,6 +85,23 @@ export default class UsuarioController {
         }
     }
 
+    async buscarSaldo(req, res) {
+        try {
+            let { id } = req.params;
+            if (await this.buscarId(id)) {
+                let saldoObj = await this.#uRepo.buscarSaldo(id);
+                let saldo = saldoObj.usu_saldo;
+                let nome = saldoObj.usu_nome;
+                return res.status(200).json({ msg: `${nome}: R$${saldo}` });
+            } else {
+                return res.status(404).json({ msg: "Usuario não encontrado." });
+            }
+        } catch (error) {
+            console.log(error);
+            return res.status(500).json({ msg: this.#errorMsg });
+        }
+    }
+
     async alterar(req, res) {
         try {
             let { id, nome, email, senha, idP } = req.body;
@@ -101,11 +125,9 @@ export default class UsuarioController {
                             );
                         }
                     } else {
-                        return res
-                            .status(400)
-                            .json({
-                                msg: "O perfil informado não foi encontrado.",
-                            });
+                        return res.status(400).json({
+                            msg: "O perfil informado não foi encontrado.",
+                        });
                     }
                 } else {
                     return res.status(404).json({
@@ -136,6 +158,66 @@ export default class UsuarioController {
                 }
             } else {
                 return res.status(404).json({ msg: "Usuario não encontrado." });
+            }
+        } catch (error) {
+            console.log(error);
+            return res.status(500).json({ msg: this.#errorMsg });
+        }
+    }
+
+    async adicionarSaldo(req, res) {
+        try {
+            let { saldo, id } = req.body;
+            if (await this.#uRepo.buscarId(id)) {
+                if (!isNaN(saldo) && saldo) {
+                    let saldoAntigo = await this.#uRepo.buscarSaldo(id);
+                    let novoSaldo = Number(saldoAntigo.usu_saldo) + Number(saldo);
+                    if (await this.#uRepo.manipularSaldo(novoSaldo, id)) {
+                        return res
+                            .status(200)
+                            .json({ msg: "Saldo adicionado!" });
+                    } else {
+                        throw new Error(
+                            "Não foi possivel adicionar saldo do usuario"
+                        );
+                    }
+                } else {
+                    return res
+                        .status(400)
+                        .json({ msg: "Informe um saldo valido." });
+                }
+            } else {
+                return res.status(404).json({ msg: "Usuario não encontrado" });
+            }
+        } catch (error) {
+            console.log(error);
+            return res.status(500).json({ msg: this.#errorMsg });
+        }
+    }
+
+    async subtrairSaldo(req, res) {
+        try {
+            let { saldo, id } = req.body;
+            if (await this.#uRepo.buscarId(id)) {
+                if (!isNaN(saldo) && saldo) {
+                    let saldoAntigo = await this.#uRepo.buscarSaldo(id);
+                    let novoSaldo = Number(saldoAntigo.usu_saldo) - Number(saldo);
+                    if (await this.#uRepo.manipularSaldo(novoSaldo, id)) {
+                        return res
+                            .status(200)
+                            .json({ msg: "Saldo subtraido!" });
+                    } else {
+                        throw new Error(
+                            "Não foi possivel subtrair saldo do usuario"
+                        );
+                    }
+                } else {
+                    return res
+                        .status(400)
+                        .json({ msg: "Informe um saldo valido." });
+                }
+            } else {
+                return res.status(404).json({ msg: "Usuario não encontrado" });
             }
         } catch (error) {
             console.log(error);

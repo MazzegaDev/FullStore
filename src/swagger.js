@@ -53,6 +53,7 @@ const doc = {
                 nome: "Eduardo",
                 email: "edu@gmail.com",
                 senha: "senhasenha123",
+                saldo: 1000,
                 idP: {
                     per_id: 4
                 }
@@ -65,6 +66,10 @@ const doc = {
                 idP: {
                     per_id: 1
                 }
+            },
+            manipularSaldo: {
+                id: 1,
+                saldo: 3000,
             },
         },
     },

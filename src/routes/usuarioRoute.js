@@ -50,6 +50,19 @@ router.get("/:id", (req, res) => {
     ctrl.buscarId(req, res);
 });
 
+router.get("/:id", (req, res) => {
+    // #swagger.tags = ['Usuario']
+    // #swagger.summary = 'Retorna o saldo de um usuario especifico'
+
+    /*
+        #swagger.responses[404] = {
+            description: "Nenhum usuario para listar",
+            schema: {$ref: '#/components/schemas/erro'}
+        }
+    */
+    ctrl.buscarSaldo(req, res);
+});
+
 router.put("/", (req, res) => {
     // #swagger.tags = ['Usuario']
     // #swagger.summary = 'Altera um usuario'
@@ -67,6 +80,44 @@ router.put("/", (req, res) => {
         }
     */
     ctrl.alterar(req, res);
+});
+
+router.patch("/adicionarSaldo", (req, res) => {
+    // #swagger.tags = ['Usuario']
+    // #swagger.summary = Adiciona saldo para um usuario'
+
+    /*
+        #swagger.requestBody = {
+            required: true,
+            content: {
+                "application/json": {
+                    schema: {
+                        $ref: '#/components/schemas/manipularSaldo'
+                    }
+                }
+            }
+        }
+    */
+    ctrl.adicionarSaldo(req, res);
+});
+
+router.patch("/subtrairSaldo", (req, res) => {
+    // #swagger.tags = ['Usuario']
+    // #swagger.summary = 'Subtrai o saldo de um usuario'
+
+    /*
+        #swagger.requestBody = {
+            required: true,
+            content: {
+                "application/json": {
+                    schema: {
+                        $ref: '#/components/schemas/manipularSaldo'
+                    }
+                }
+            }
+        }
+    */
+    ctrl.subtrairSaldo(req, res);
 });
 
 router.delete("/:id", (req, res) => {

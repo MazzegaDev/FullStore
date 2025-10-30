@@ -701,7 +701,7 @@
         "tags": [
           "Usuario"
         ],
-        "summary": "Lista um usuario especifico",
+        "summary": "Retorna o saldo de um usuario especifico",
         "description": "",
         "parameters": [
           {
@@ -762,6 +762,72 @@
           },
           "500": {
             "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/usuario/adicionarSaldo": {
+      "patch": {
+        "tags": [
+          "Usuario"
+        ],
+        "summary": "Adiciona saldo para um usuario",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/manipularSaldo"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/usuario/subtrairSaldo": {
+      "patch": {
+        "tags": [
+          "Usuario"
+        ],
+        "summary": "Subtrai o saldo de um usuario",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/manipularSaldo"
+              }
+            }
           }
         }
       }
@@ -936,6 +1002,10 @@
             "type": "string",
             "example": "senhasenha123"
           },
+          "saldo": {
+            "type": "number",
+            "example": 1000
+          },
           "idP": {
             "type": "object",
             "properties": {
@@ -981,6 +1051,22 @@
         },
         "xml": {
           "name": "usuarioAlter"
+        }
+      },
+      "manipularSaldo": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "example": 1
+          },
+          "saldo": {
+            "type": "number",
+            "example": 3000
+          }
+        },
+        "xml": {
+          "name": "manipularSaldo"
         }
       }
     }
