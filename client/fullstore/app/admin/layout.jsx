@@ -113,7 +113,7 @@ export default function AdminLayout({ children }) {
                                     </span>
                                     <img
                                         className="img-profile rounded-circle"
-                                        src="/img/user.jpg"
+                                        src="/img/arthurisrael.jpg"
                                         alt="Usuário"
                                     />
                                 </a>
