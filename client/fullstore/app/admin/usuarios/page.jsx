@@ -69,6 +69,10 @@ export default function UsuariosPage() {
                                     Email
                                 </th>
                                 <th>
+                                    <i className="fas fa-money-bill"></i>
+                                    Saldo
+                                </th>
+                                <th>
                                     <i className="fas fa-user-shield me-1"></i>
                                     Perfil Associado
                                 </th>
@@ -88,6 +92,7 @@ export default function UsuariosPage() {
                                         <td>{obj.usu_id}</td>
                                         <td>{obj.usu_nome}</td>
                                         <td>{obj.usu_email}</td>
+                                        <td>{obj.usu_saldo}</td>
                                         <td>{obj.per_id.per_id}</td>
                                         <td>{obj.per_id.per_desc}</td>
                                         <td>
