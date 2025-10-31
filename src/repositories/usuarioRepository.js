@@ -26,7 +26,7 @@ export default class UsuarioRepository {
 
     async listar() {
         const sql =
-            "select * from tb_usuario U inner join tb_perfil P on U.per_id = P.per_id";
+            "select * from tb_usuario U inner join tb_perfil P on U.per_id = P.per_id order by usu_saldo";
         let usuario = [];
 
         const rows = await this.#banco.ExecutaComando(sql);

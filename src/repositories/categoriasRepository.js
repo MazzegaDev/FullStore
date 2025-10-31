@@ -17,7 +17,7 @@ export default class CategoriaRepository {
     }
 
     async listar() {
-        const sql = "select * from tb_categoria";
+        const sql = "select * from tb_categoria order by cate_id";
         let categoria = [];
 
         const rows = await this.#banco.ExecutaComando(sql);

@@ -8,7 +8,7 @@ export default class MarcaRepository{
     }
 
     async listar(){
-        const sql = "select * from tb_marca order by marc_id";
+        const sql = "select * from tb_marca order by marc_id order by marc_id";
         let marca = [];
 
         const rows = await this.#banco.ExecutaComando(sql);
