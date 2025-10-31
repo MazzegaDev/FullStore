@@ -65,7 +65,7 @@ export default function AdminLayout({ children }) {
                 {/* Vendas */}
                 <li className="nav-item icon-animate">
                     <Link className="nav-link" href="/admin/vendas">
-                        <i class="fas fa-money-bill"></i>
+                        <i className="fas fa-money-bill"></i>
                         <span>Vendas</span>
                     </Link>
                 </li>
