@@ -1,0 +1,27 @@
+body{
+    padding: 0;
+    margin: 0;
+}
+
+
+.produto{
+    display: flex;
+    flex-direction: column;
+    margin: 0.5rem;
+    justify-content: space-around;
+    align-items: center;
+    border: 2px solid blue;
+}
+.nome{
+    font-size: 1.2rem;
+    text-align: center;
+}
+.lista{
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid black;
+    
+}

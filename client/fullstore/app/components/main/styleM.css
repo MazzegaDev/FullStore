@@ -17,3 +17,9 @@ body{
 .section-sobre > img{
     width: 50vw;
 }
+.card-produtos{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border: 2px solid red;
+}
