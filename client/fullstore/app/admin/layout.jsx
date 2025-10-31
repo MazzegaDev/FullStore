@@ -19,7 +19,9 @@ export default function AdminLayout({ children }) {
                     <div className="sidebar-brand-icon">
                         <i className="fas fa-desktop"></i>
                     </div>
-                    <div className="sidebar-brand-text mx-2">FullStore Backoffice</div>
+                    <div className="sidebar-brand-text mx-2">
+                        FullStore Backoffice
+                    </div>
                 </a>
 
                 <hr className="sidebar-divider my-0" />
@@ -59,6 +61,15 @@ export default function AdminLayout({ children }) {
                         <span>Categorias</span>
                     </Link>
                 </li>
+
+                {/* Vendas */}
+                <li className="nav-item icon-animate">
+                    <Link className="nav-link" href="/admin/vendas">
+                        <i class="fas fa-money-bill"></i>
+                        <span>Vendas</span>
+                    </Link>
+                </li>
+
                 {/* Perfis */}
                 <li className="nav-item icon-animate">
                     <Link className="nav-link" href="/admin/perfis">
