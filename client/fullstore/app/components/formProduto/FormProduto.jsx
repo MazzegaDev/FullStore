@@ -5,10 +5,22 @@ import "../../..//public/css/CadastroPage.css";
 import Link from "next/link";
 import toast, { Toaster } from "react-hot-toast";
 import { apiClient, ApiClient } from "@/utils/apiClient";
+import { useRouter } from "next/navigation";
 
-export default function FormProduto() {
+export default function FormProduto({ produto }) {
     const [marcas, setMarcas] = useState([]);
     const [categorias, setCategorias] = useState([]);
+    const [alterar, setAlterar] = useState(false);
+
+    const router = useRouter();
+
+    useEffect(() => {
+        buscaMarcas();
+        buscaCategoria();
+        setTimeout(() => {
+            buscarProduto();
+        }, 12);
+    }, []);
 
     const nomeRef = useRef("");
     const quantRef = useRef("");
@@ -16,9 +28,7 @@ export default function FormProduto() {
     const marcaRef = useRef("");
     const categoriaRef = useRef("");
 
-    async function handleSubmit(e) {
-        e.preventDefault();
-
+    async function handleSubmit() {
         const nome = nomeRef.current.value.trim();
         const quant = parseInt(quantRef.current.value);
         const preco = parseFloat(precoRef.current.value);
@@ -38,6 +48,7 @@ export default function FormProduto() {
                 const response = await apiClient.post("/produto", produto);
 
                 if (response.msg) {
+                    router.replace("/admin/produtos")
                     toast.success(response.msg);
                     nomeRef.current.value = "";
                     quantRef.current.value = "";
@@ -53,10 +64,52 @@ export default function FormProduto() {
         }
     }
 
-    useEffect(() => {
-        buscaMarcas();
-        buscaCategoria();
-    }, []);
+    async function alterarProduto() {
+        const id = produto.prod_id;
+        const nome = nomeRef.current.value.trim();
+        const quant = parseInt(quantRef.current.value);
+        const preco = parseFloat(precoRef.current.value);
+        const marca = { marc_id: parseInt(marcaRef.current.value) };
+        const categoria = { cate_id: parseInt(categoriaRef.current.value) };
+
+        if (
+            nome &&
+            quant > 0 &&
+            preco > 0 &&
+            marca.marc_id &&
+            categoria.cate_id
+        ) {
+            try {
+                const produto = { id, nome, quant, preco, marca, categoria };
+
+                const response = await apiClient.put("/produto", produto);
+
+                if (response.msg) {
+                    toast.success(response.msg);
+                    nomeRef.current.value = "";
+                    quantRef.current.value = "";
+                    precoRef.current.value = "";
+                    marcaRef.current.value = 0;
+                    categoriaRef.current.value = 0;
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        } else {
+            toast.error("Preencha todos os campos corretamente!");
+        }
+    }
+
+    function buscarProduto() {
+        if (produto) {
+            nomeRef.current.value = produto.prod_nome;
+            quantRef.current.value = produto.prod_quant;
+            precoRef.current.value = produto.prod_preco;
+            marcaRef.current.value = produto.marc_id.marc_id;
+            categoriaRef.current.value = produto.cate_id.cate_id;
+            setAlterar(true);
+        }
+    }
 
     async function buscaMarcas() {
         try {
@@ -89,7 +142,7 @@ export default function FormProduto() {
                 </div>
 
                 <div className="card-body">
-                    <div className="row g-3">    
+                    <div className="row g-3">
                         {/* Produto */}
                         <div className="col-md-6">
                             <label
@@ -212,7 +265,14 @@ export default function FormProduto() {
                                 <span className="icon text-white-50">
                                     <i className="fas fa-save"></i>
                                 </span>
-                                <span className="text" onClick={handleSubmit}>Gravar</span>
+                                <span
+                                    className="text"
+                                    onClick={
+                                        alterar ? alterarProduto : handleSubmit
+                                    }
+                                >
+                                    {alterar ? "Alterar" : "Gravar"}
+                                </span>
                             </button>
                         </div>
                     </div>

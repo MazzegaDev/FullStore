@@ -1,37 +1,34 @@
 "use client";
 
-import { apiClient } from "@/utils/apiClient";
-import { useParams } from "next/navigation";
-import { useEffect, useState } from "react";
-import toast, { Toaster } from "react-hot-toast";
+
 import FormProduto from "@/app/components/formProduto/FormProduto";
+import { use, useEffect, useState } from "react";
+import { apiClient } from "@/utils/apiClient";
 
+export default function AlterPage({ params }) {
+    const [produto, setProduto] = useState(null);
+    const { id } = use(params);
 
-export default function AlterPage() {
-    const [lista, setLista] = useState([]);
-    let { id } = useParams();
+    useEffect(() =>{
+        buscarProduto();
+    },[])
 
-    useEffect(() => {
-        buscaProduto();
-    }, [id]);
-    async function buscaProduto() {
-        try {
-            let response = await apiClient.get(`/produto/${id}`);
-            setLista(response);
-            console.log(response)
-        } catch (error) {
-            console.log(error);
-            alert("erro ao buscar produo", error);
+    async function buscarProduto() {
+        let response = await apiClient.get(`/produto/${id}`);
+        if (response) {
+            console.log(response);
+            setProduto(response);
         }
     }
 
     return (
         <div>
-            <div>
-                <Toaster/>
-            </div>
-            {/* bugado */}
-            {/* <FormProduto></FormProduto> */}
+            <h1>Alterar Produto</h1>
+            {produto == null ? 
+                <p>Carregando...</p>
+             : 
+                <FormProduto produto={produto}></FormProduto>
+            }
         </div>
     );
 }

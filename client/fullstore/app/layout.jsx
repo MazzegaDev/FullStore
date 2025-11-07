@@ -2,6 +2,10 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Nunito } from "next/font/google";
 import appContext from "./context/appContext";
+import "../public/css/sb-admin-2.min.css";
+import "../public/css/fontawesome-free/css/all.min.css";
+
+
 //Usa o contexto pelo provedor
 import { ContextProvider } from "./context/appContext";
 
