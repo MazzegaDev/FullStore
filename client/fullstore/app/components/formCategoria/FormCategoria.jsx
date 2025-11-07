@@ -4,11 +4,11 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import toast, { Toaster } from "react-hot-toast";
 import { apiClient } from "@/utils/apiClient";
-
+import { useRouter } from "next/navigation";
 export default function FormCategoria({categoria}) {
     const nomeRef = useRef("");
     const [monitor, setMonitor] = useState(false);
-    
+    const router = useRouter();
     useEffect(() => {
         setTimeout(() => {
             buscarCategorias();
@@ -35,7 +35,7 @@ export default function FormCategoria({categoria}) {
             const response = await apiClient.put("/categoria", obj);
             if (response.msg) {
                 toast.success(response.msg);
-                nomeRef.current.value = "";
+                router.replace("/admin/categorias/")
             } else {
                 toast.error("Resposta inesperada do servidor");
             }
@@ -60,7 +60,7 @@ export default function FormCategoria({categoria}) {
             const response = await apiClient.post("/categoria", obj);
             if (response.msg) {
                 toast.success(response.msg);
-                nomeRef.current.value = "";
+                router.replace("/admin/categorias/")
             } else {
                 toast.error("Resposta inesperada do servidor");
             }
@@ -120,7 +120,7 @@ export default function FormCategoria({categoria}) {
                                         <span className="icon text-white-50">
                                             <i className="fas fa-save"></i>
                                         </span>
-                                        <span className="text" onClick={alterar ? alterar : handleSubmit}>{monitor ? "Alterar" : "Gravar"}</span>
+                                        <span className="text" onClick={monitor ? alterar : handleSubmit}>{monitor ? "Alterar" : "Gravar"}</span>
                                     </button>
 
                                 </div>

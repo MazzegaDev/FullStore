@@ -28,6 +28,10 @@ const doc = {
             categoria: {
                 nome: "Eletronico",
             },
+            categoriaAlter: {
+                id: 2,
+                nome: "novo nome",
+            },
             produtoAlter: {
                 id: 2,
                 nome: "novo nome",

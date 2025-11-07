@@ -55,6 +55,15 @@ export default class CategoriaRepository {
         return null;
     }
 
+    async alterar(categoria){
+        const sql = "update  tb_categoria set cate_nome = ? where cate_id = ?";
+        const values = [categoria.cate_nome, categoria.cate_id];
+
+        const result = await this.#banco.ExecutaComandoNonQuery(sql, values);
+
+        return result;
+    }
+
     async deletar(id){
         const sql = "delete from tb_categoria where cate_id = ?";
         const values = [id];
