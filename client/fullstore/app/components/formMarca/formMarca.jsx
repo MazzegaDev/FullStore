@@ -1,16 +1,55 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import toast, { Toaster } from "react-hot-toast";
 import { apiClient } from "@/utils/apiClient";
+import { useRouter } from "next/navigation";
 
-export default function FormMarca() {
+export default function FormMarca({ marca }) {
+    const [monitor, setMonitor] = useState(false);
     const nomeRef = useRef("");
+    const router = useRouter();
 
-    async function handleSubmit(e) {
-        e.preventDefault();
+    useEffect(() => {
+        setTimeout(() => {
+            buscarMarca();
+        }, 12);
+    }, []);
 
+    function buscarMarca() {
+        if (marca) {
+            nomeRef.current.value = marca.marc_nome;
+            setMonitor(true);
+        }
+    }
+
+    async function alterarMarca() {
+        const id = marca.marc_id;
+        const nome = nomeRef.current.value.trim();
+
+        if (!nome) {
+            toast.error("Preencha o nome da marca");
+            return;
+        }
+
+        const obj = { id, nome };
+
+        try {
+            const response = await apiClient.put("/marca", obj);
+            if (response.msg) {
+                toast.success(response.msg);
+                router.replace("/admin/marcas/");
+            } else {
+                toast.error("Resposta inesperada do servidor");
+            }
+        } catch (error) {
+            console.error(error);
+            toast.error("Erro ao alterar a marca");
+        }
+    }
+
+    async function handleSubmit() {
         const nome = nomeRef.current.value.trim();
 
         if (!nome) {
@@ -24,7 +63,7 @@ export default function FormMarca() {
             const response = await apiClient.post("/marca", marca);
             if (response.msg) {
                 toast.success(response.msg);
-                nomeRef.current.value = "";
+                router.replace("/admin/marcas/");
             } else {
                 toast.error("Resposta inesperada do servidor");
             }
@@ -44,7 +83,9 @@ export default function FormMarca() {
                         <div className="card-header bg-primary text-white py-3">
                             <h4 className="mb-0">
                                 <i className="fas fa-tags me-2"></i>
-                                Cadastro de Marca
+                                {monitor
+                                    ? "Alterar marca"
+                                    : "Cadastro de Marca"}
                             </h4>
                         </div>
 
@@ -85,7 +126,16 @@ export default function FormMarca() {
                                         <span className="icon text-white-50">
                                             <i className="fas fa-save"></i>
                                         </span>
-                                        <span className="text" onClick={handleSubmit}>Gravar</span>
+                                        <span
+                                            className="text"
+                                            onClick={
+                                                monitor
+                                                    ? alterarMarca
+                                                    : handleSubmit
+                                            }
+                                        >
+                                            {monitor ? "Alterar" : "Gravar"}
+                                        </span>
                                     </button>
                                 </div>
                             </div>

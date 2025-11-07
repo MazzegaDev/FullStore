@@ -56,6 +56,15 @@ export default class MarcaRepository{
         return null;
     }
 
+    async alterar(marca){
+        const sql = "update tb_marca set marc_nome = ? where marc_id = ?";
+        const values = [marca.marc_nome, marca.marc_id];
+
+        const result = await this.#banco.ExecutaComandoNonQuery(sql, values);
+
+        return result;
+    }
+
     async deletar(id){
         const sql = "delete from tb_marca where marc_id = ?";
         const values = [id];

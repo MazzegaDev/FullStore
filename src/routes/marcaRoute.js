@@ -49,10 +49,30 @@ router.get("/:id", (req, res) => {
     ctrl.buscarId(req, res);
 });
 
+router.put("/", (req, res) => {
+    // #swagger.tags = ['Marca']
+    // #swagger.summary = 'Altera uma marca'
+
+    /*
+        #swagger.requestBody = {
+            required: true,
+            content: {
+                "application/json": {
+                    schema: {
+                        $ref: '#/components/schemas/marcaAlter'
+                    }
+                }
+            }
+        }
+    */
+
+    ctrl.alterar(req, res);
+});
+
 router.delete("/:id", (req, res) => {
     // #swagger.tags = ['Marca']
     // #swagger.summary = 'Deleta uma marca'
-    
+
     ctrl.deletar(req, res);
 });
 

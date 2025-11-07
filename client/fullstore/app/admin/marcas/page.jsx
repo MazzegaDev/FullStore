@@ -79,12 +79,16 @@ export default function MarcasPage() {
                                         </td>
                                         <td>
                                             <div className="d-flex justify-content-center gap-2">
-                                                <button
-                                                    className="btn btn-sm btn-warning"
-                                                    title="Editar"
+                                                <Link
+                                                    href={`/admin/marcas/alterar/${obj.marc_id}`}
                                                 >
-                                                    <i className="fas fa-edit"></i>
-                                                </button>
+                                                    <button
+                                                        className="btn btn-sm btn-warning"
+                                                        title="Editar"
+                                                    >
+                                                        <i className="fas fa-edit"></i>
+                                                    </button>
+                                                </Link>
                                                 <button
                                                     className="btn btn-sm btn-danger"
                                                     onClick={() =>

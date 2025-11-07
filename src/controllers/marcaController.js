@@ -67,6 +67,29 @@ export default class MarcaController {
         }
     }
 
+    async alterar(req, res){
+        try {
+            let {id, nome} = req.body;
+            if(nome){
+                if(await this.#mRepo.buscarId(id)){
+                    let marca = new Marca(id, nome);
+                    if(await this.#mRepo.alterar(marca)){
+                        return res.status(200).json({msg: "Marca alterada!"});
+                    }else{
+                        throw new Error("Não foi possivel alterar a marca.");
+                    }
+                }else{
+                    return res.status(404).json({msg: "Marca não encontrada"});
+                }
+            }else{
+                return res.status(400).json({msg: "A marca não pode conter informações invalidas."});
+            }
+        } catch (error) {
+            console.log(error);
+            return res.status(500).json({msg: "Não foi possivel processar a requisição."});
+        }
+    }
+
     async deletar(req, res) {
         try {
             let { id } = req.params;

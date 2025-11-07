@@ -25,6 +25,10 @@ const doc = {
             marca: {
                 nome: "AMD",
             },
+            marcaAlter: {
+                id: 2,
+                nome: "Novo nome",
+            },
             categoria: {
                 nome: "Eletronico",
             },

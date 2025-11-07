@@ -230,6 +230,37 @@
             "description": "Internal Server Error"
           }
         }
+      },
+      "put": {
+        "tags": [
+          "Marca"
+        ],
+        "summary": "Altera uma marca",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/marcaAlter"
+              }
+            }
+          }
+        }
       }
     },
     "/marca/{id}": {
@@ -926,6 +957,22 @@
         },
         "xml": {
           "name": "marca"
+        }
+      },
+      "marcaAlter": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "example": 2
+          },
+          "nome": {
+            "type": "string",
+            "example": "Novo nome"
+          }
+        },
+        "xml": {
+          "name": "marcaAlter"
         }
       },
       "categoria": {
