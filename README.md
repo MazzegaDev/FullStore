@@ -30,15 +30,15 @@
 ## 🎯 Funcionalidades
 
 ### 👨‍💼 Área Administrativa
-- 📦 **Gestão de Produtos:** cadastro, edição e listagem  
-- 📑 **Gestão de Categorias:** organização e vínculo de produtos  
-- 🏷️ **Gestão de Marcas:** controle de fabricantes e fornecedores  
+- 📦 **Gestão de Produtos:** cadastro e gerenciamento  
+- 📑 **Gestão de Categorias:** cadastro e gerenciamento  
+- 🏷️ **Gestão de Marcas:** cadastro e gerenciamento de marcas 
 - 👥 **Gestão de Usuários:** cadastro e gerenciamento de perfis  
-- 💰 **Gestão de Vendas:** visualização e acompanhamento de pedidos  
+- 💰 **Gestão de Vendas:** visualização e acompanhamento das compras realizadas no sistema  
 
 ### 🛒 Área do Cliente
-- 🛍️ **Catálogo de Produtos:** navegação, filtros e busca  
-- 🛒 **Carrinho de Compras:** adição, remoção e atualização de itens  
+- 🛍️ **Catálogo de Produtos:** navegação  e busca  
+- 🛒 **Carrinho de Compras:** adição, remoção de itens  
 - 👤 **Área Pessoal:** histórico de pedidos e informações do usuário  
 
 ---
@@ -102,8 +102,8 @@ npm run dev
 
 - Execute o script SQL disponível para criar o banco e as tabelas necessárias.
 
-## 🛡️ Segurança (Não implementado.)
-- 🔒 **Autenticação JWT:** garante o acesso seguro a recursos protegidos.  
+## 🛡️ Segurança 
+- 🔒 **Autenticação JWT (Não implementado):** garante o acesso seguro a recursos protegidos.  
 - 🌐 **CORS configurado:** protege a comunicação entre domínios e impede requisições não autorizadas.  
 - 🧭 **Separação de Áreas:** clara distinção entre a área **administrativa** e a área **do cliente**, reforçando o controle de acesso.  
 
