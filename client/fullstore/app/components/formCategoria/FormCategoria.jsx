@@ -1,15 +1,52 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import toast, { Toaster } from "react-hot-toast";
 import { apiClient } from "@/utils/apiClient";
 
-export default function FormCategoria() {
+export default function FormCategoria({categoria}) {
     const nomeRef = useRef("");
+    const [monitor, setMonitor] = useState(false);
+    
+    useEffect(() => {
+        setTimeout(() => {
+            buscarCategorias();
+        }, 12)
+    }, []);
 
-    async function handleSubmit(e) {
-        e.preventDefault();
+    function buscarCategorias(){
+        if(categoria){
+            nomeRef.current.value = categoria.cate_nome;
+            setMonitor(true);
+        }
+    }
+
+    async function alterar() {
+        const nome = nomeRef.current.value.trim();
+        const id = categoria.cate_id;
+        if (!nome) {
+            toast.error("Preencha o nome da categoria");
+            return;
+        }
+
+        const obj = { id, nome };
+        try {
+            const response = await apiClient.put("/categoria", obj);
+            if (response.msg) {
+                toast.success(response.msg);
+                nomeRef.current.value = "";
+            } else {
+                toast.error("Resposta inesperada do servidor");
+            }
+        } catch (error) {
+            console.error(error);
+            toast.error("Erro ao alterar categoria");
+        }
+    }
+
+    async function handleSubmit() {
+       
 
         const nome = nomeRef.current.value.trim();
 
@@ -43,7 +80,10 @@ export default function FormCategoria() {
                         <div className="card-header bg-primary text-white py-3">
                             <h4 className="mb-0">
                                 <i className="fas fa-list-alt"></i>
-                                Cadastro de Categoria
+                                {
+                                    monitor ? "Alterar categoria" : "Cadastrar"
+                                }
+                                
                             </h4>
                         </div>
 
@@ -80,7 +120,7 @@ export default function FormCategoria() {
                                         <span className="icon text-white-50">
                                             <i className="fas fa-save"></i>
                                         </span>
-                                        <span className="text" onClick={handleSubmit}>Gravar</span>
+                                        <span className="text" onClick={alterar ? alterar : handleSubmit}>{monitor ? "Alterar" : "Gravar"}</span>
                                     </button>
 
                                 </div>

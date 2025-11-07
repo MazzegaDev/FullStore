@@ -23,7 +23,6 @@ export default function AlterPage({ params }) {
 
     return (
         <div>
-            <h1>Alterar Produto</h1>
             {produto == null ? 
                 <p>Carregando...</p>
              : 

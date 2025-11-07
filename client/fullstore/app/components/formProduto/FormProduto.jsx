@@ -136,8 +136,11 @@ export default function FormProduto({ produto }) {
             <div className="card shadow mb-4 border-0">
                 <div className="card-header py-3 bg-primary text-white d-flex align-items-center">
                     <h6 className="m-0 fw-bold">
-                        <i className="fas fa-box-open me-2"></i> Cadastro de
-                        Produto
+                        <i className="fas fa-box-open me-2"></i> 
+                        {
+                            alterar ? "Alterar produto" : "Cadastrar produto"
+                        }
+                        
                     </h6>
                 </div>
 
