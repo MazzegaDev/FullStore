@@ -19,7 +19,7 @@ export default function FormProduto({ produto }) {
         buscaCategoria();
         setTimeout(() => {
             buscarProduto();
-        }, 12);
+        }, 20);
     }, []);
 
     const nomeRef = useRef("");
