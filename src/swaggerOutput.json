@@ -1133,12 +1133,16 @@
             "type": "string",
             "example": "senhasenha123"
           },
+          "saldo": {
+            "type": "number",
+            "example": 1000
+          },
           "idP": {
             "type": "object",
             "properties": {
               "per_id": {
                 "type": "number",
-                "example": 1
+                "example": 4
               }
             }
           }

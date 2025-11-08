@@ -1,13 +1,17 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { use, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { apiClient } from "@/utils/apiClient";
 import toast, { Toaster } from "react-hot-toast";
 import "../../..//public/css/CadastroPage.css";
+import { useRouter } from "next/navigation";
 
-export default function FormUsuario() {
+export default function FormUsuario({ usuario }) {
     const [lista, setLista] = useState([]);
+    const [monitor, setMonitor] = useState(false);
+
+    const router = useRouter();
 
     const nomeRef = useRef("");
     const emailRef = useRef("");
@@ -15,10 +19,54 @@ export default function FormUsuario() {
     const saldoRef = useRef("");
     const perfilRef = useRef("");
 
-
     useEffect(() => {
         buscaPerfil();
+        setTimeout(() => [buscaUsuario()], 12);
     }, []);
+
+    function buscaUsuario() {
+        if (usuario) {
+            nomeRef.current.value = usuario.usu_nome;
+            emailRef.current.value = usuario.usu_email;
+            senhaRef.current.value = usuario.usu_saldo;
+            saldoRef.current.value = usuario.usu_saldo;
+            perfilRef.current.value = usuario.per_id.per_id;
+            setMonitor(true);
+        }
+    }
+
+    async function alterarUsuario() {
+        const id = usuario.usu_id;
+        const nome = nomeRef.current.value.trim();
+        const email = emailRef.current.value.trim();
+        const senha = senhaRef.current.value.trim();
+        const saldo = Number(saldoRef.current.value);
+        const idP = { per_id: parseInt(perfilRef.current.value) };
+
+        if (!nome && !email && !senha && !idP) {
+            toast.error("O usuario não pode conter informações invalidas");
+        }
+
+        const obj = {
+            id,
+            nome,
+            email,
+            senha,
+            saldo,
+            idP,
+        };
+
+        try {
+            const response = await apiClient.put("/usuario/", obj);
+            if (response.msg) {
+                toast.success(response.msg);
+                router.replace("/admin/usuarios/");
+            }
+        } catch (error) {
+            toast.error("Erro ao alterar o  usuario.");
+            console.log(error);
+        }
+    }
 
     async function buscaPerfil() {
         try {
@@ -30,16 +78,14 @@ export default function FormUsuario() {
         }
     }
 
-    async function handleSubmit(e) {
-        e.preventDefault();
-
+    async function handleSubmit() {
         const nome = nomeRef.current.value.trim();
         const email = emailRef.current.value.trim();
         const senha = senhaRef.current.value.trim();
         const saldo = Number(saldoRef.current.value);
-        const idP = {per_id: parseInt(perfilRef.current.value)}
+        const idP = { per_id: parseInt(perfilRef.current.value) };
 
-        if(!nome && !email && !senha && !idP){
+        if (!nome && !email && !senha && !idP) {
             toast.error("O usuario não pode conter informações invalidas");
         }
 
@@ -49,20 +95,16 @@ export default function FormUsuario() {
             senha,
             saldo,
             idP,
-        }
+        };
 
         try {
             const response = await apiClient.post("/usuario/", obj);
-            if(response.msg){
+            if (response.msg) {
                 toast.success(response.msg);
-                nomeRef.current.value = "";
-                emailRef.current.value = "";
-                senhaRef.current.value = "";
-                saldoRef.current.value = 0;
-                perfilRef.current.value = 0;
+                router.replace("/admin/usuarios/");
             }
         } catch (error) {
-            toast.error("Erro ao cadastrar usuario.")
+            toast.error("Erro ao cadastrar usuario.");
             console.log(error);
         }
     }
@@ -74,7 +116,9 @@ export default function FormUsuario() {
                 <div className="card-header py-3 bg-primary text-white d-flex align-items-center">
                     <h6 className="m-0 fw-bold">
                         <i className="fas fa-user me-2"></i>
-                        Cadastro de Usuário
+                        {
+                            monitor ? "Alterar usuario" : "Cadastrar usuario"
+                        }
                     </h6>
                 </div>
 
@@ -124,7 +168,6 @@ export default function FormUsuario() {
                                 className="form-control shadow-sm"
                                 id="saldo"
                                 ref={saldoRef}
-                               
                             />
                         </div>
 
@@ -184,9 +227,13 @@ export default function FormUsuario() {
                                 className="btn btn-success btn-icon-split shadow-sm"
                             >
                                 <span className="icon text-white-50">
-                                    <i className="fas fa-save"></i> 
+                                    <i className="fas fa-save"></i>
                                 </span>
-                                <span className="text" onClick={handleSubmit}>Gravar</span>
+                                <span className="text" onClick={monitor ? alterarUsuario : handleSubmit}>
+                                    {
+                                        monitor ? "Alterar" : "Gravar"
+                                    }
+                                </span>
                             </button>
                         </div>
                     </div>

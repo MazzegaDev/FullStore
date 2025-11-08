@@ -97,7 +97,7 @@ export default function UsuariosPage() {
                                         <td>{obj.per_id.per_desc}</td>
                                         <td>
                                             <div className="d-flex justify-content-center gap-2">
-                                                <Link href="">
+                                                <Link href={`/admin/usuarios/alterar/${obj.usu_id}`}>
                                                     <button
                                                         className="btn btn-sm btn-warning"
                                                         title="Editar"

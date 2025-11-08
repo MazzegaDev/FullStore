@@ -71,8 +71,9 @@ const doc = {
                 nome: "Eduardo",
                 email: "edu@gmail.com",
                 senha: "senhasenha123",
+                saldo: 1000,
                 idP: {
-                    per_id: 1
+                    per_id: 4
                 }
             },
             manipularSaldo: {

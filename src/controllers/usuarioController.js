@@ -104,14 +104,15 @@ export default class UsuarioController {
 
     async alterar(req, res) {
         try {
-            let { id, nome, email, senha, idP } = req.body;
-            if (id && nome && email && senha && idP.per_id) {
+            let { id, nome, email, saldo, senha, idP } = req.body;
+            if (id && nome && email && saldo && senha && idP.per_id) {
                 if (await this.#uRepo.buscarId(id)) {
                     if (await this.#uRepo.procurarPerfil(idP.per_id)) {
                         let usuario = new Usuario(
                             id,
                             nome,
                             email,
+                            saldo,
                             senha,
                             new Perfil(idP.per_id)
                         );
