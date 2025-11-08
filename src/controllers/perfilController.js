@@ -103,7 +103,11 @@ export default class PerfilController {
             let { id } = req.params;
             if (await this.#pRepo.buscarId(id)) {
                 if (await this.#pRepo.verificaUsuario(id)) {
-                    return res.status(400).json({msg: "Não foi possivel deletar esse perfil pois tem usuarios associados a ele.",})
+                    return res
+                        .status(400)
+                        .json({
+                            msg: "Não foi possivel deletar esse perfil pois tem usuarios associados a ele.",
+                        });
                 } else {
                     if (await this.#pRepo.deletar(id)) {
                         return res
