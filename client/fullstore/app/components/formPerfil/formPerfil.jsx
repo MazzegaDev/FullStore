@@ -2,17 +2,59 @@
 
 import { apiClient } from "@/utils/apiClient";
 import Link from "next/link";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import "../../..//public/css/CadastroPage.css";
+import { useRouter } from "next/navigation";
 
-export default function FormPerfil() {
+export default function FormPerfil({ perfil }) {
     let descRef = useRef("");
     let admRef = useRef("");
+    const [monitor, setMonitor] = useState(false);
+    const router = useRouter();
 
-    async function handleSubmit(e) {
-        e.preventDefault();
+    useEffect(() => {
+        setTimeout(() => {
+            buscarPerfil();
+        }, 12);
+    }, []);
 
+    function buscarPerfil() {
+        if (perfil) {
+            descRef.current.value = perfil.per_desc;
+            admRef.current.value = perfil.per_adm;
+            setMonitor(true);
+        }
+    }
+
+    async function alterarPerfil() {
+        let id = perfil.per_id;
+        let desc = descRef.current.value.trim();
+        let adm = admRef.current.value;
+
+        if (!desc && !adm) {
+            toast.error("O perfil não pode conter dados invalidos.");
+        }
+
+        const obj = {
+            id,
+            desc,
+            adm,
+        };
+
+        try {
+            const response = await apiClient.put("/perfil", obj);
+            if (response.msg) {
+                toast.success(response.msg);
+                router.replace("/admin/perfis/");
+            }
+        } catch (error) {
+            console.log(error);
+            toast.error("Erro ao cadastrar perfil.");
+        }
+    }
+
+    async function handleSubmit() {
         let desc = descRef.current.value.trim();
         let adm = admRef.current.value;
 
@@ -29,7 +71,7 @@ export default function FormPerfil() {
             const response = await apiClient.post("/perfil", obj);
             if (response.msg) {
                 toast.success(response.msg);
-                descRef.current.value = "";
+                router.replace("/admin/perfis/");
             }
         } catch (error) {
             console.log(error);
@@ -47,7 +89,9 @@ export default function FormPerfil() {
                         <div className="card-header bg-primary text-white py-3">
                             <h4 className="mb-0">
                                 <i className="fas fa-user-shield me-2"></i>
-                                Cadastro de Perfil
+                                {monitor
+                                    ? "Alterar perfil"
+                                    : "Cadastro de Perfil"}
                             </h4>
                         </div>
 
@@ -81,7 +125,7 @@ export default function FormPerfil() {
                                 <div className="custom-select-wrapper">
                                     <select
                                         id="adm"
-                                       className="form-select shadow-sm"
+                                        className="form-select shadow-sm"
                                         ref={admRef}
                                         defaultValue="0"
                                     >
@@ -105,12 +149,16 @@ export default function FormPerfil() {
                                 <button
                                     type="submit"
                                     className="btn btn-success btn-icon-split shadow-sm"
-                                    onClick={handleSubmit}
+                                    onClick={
+                                        monitor ? alterarPerfil : handleSubmit
+                                    }
                                 >
                                     <span className="icon text-white-50">
                                         <i className="fas fa-save"></i>
                                     </span>
-                                    <span className="text">Gravar</span>
+                                    <span className="text">
+                                        {monitor ? "Alterar" : "Gravar"}
+                                    </span>
                                 </button>
                             </div>
                         </div>

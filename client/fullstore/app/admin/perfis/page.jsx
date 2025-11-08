@@ -97,7 +97,7 @@ export default function PerfilPage() {
                                         </td>
                                         <td>
                                             <div className="d-flex justify-content-center gap-2">
-                                                <Link href="">
+                                                <Link href={`/admin/perfis/alterar/${obj.per_id}`}>
                                                     <button
                                                         className="btn btn-sm btn-warning"
                                                         title="Editar"
