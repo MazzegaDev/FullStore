@@ -21,22 +21,19 @@ export default function Main() {
         }
     }
 
-    let marca = "teste";
-    let nome = "teste1";
-    let preco = 200;
-
     return (
         <main>
             <Tittle titulo={"Confira nossos produtos"}></Tittle>
-            <section className="card-produtos">
-                {lista.map((obj, index) => (
-                    <ProdutoCard
-                        key={index}
-                        marca={obj.marc_id.marc_nome}
-                        preco={obj.prod_preco}
-                        nome={obj.prod_nome}
-                    ></ProdutoCard>
-                ))}
+            <section className="testeDiv">
+                    {lista.map((obj, index) => (
+                        <ProdutoCard
+                            key={index}
+                            id={obj.prod_id}
+                            marca={obj.marc_id.marc_nome}
+                            preco={obj.prod_preco}
+                            nome={obj.prod_nome}
+                        ></ProdutoCard>
+                    ))}
             </section>
         </main>
     );

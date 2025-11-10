@@ -1,6 +1,8 @@
 .listaLinks{
+    margin: 0.5rem;
     display: flex;
     flex-direction: row;
+    align-items: center;
     justify-content: space-around;
     list-style-type: none;
 }
@@ -13,5 +15,6 @@
 }
 
 .links:hover{
-    background-color: rgb(53, 52, 52);
+    text-decoration: none;
+    background-color: #8391fa8e;
 }

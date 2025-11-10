@@ -1,25 +1,27 @@
-body{
+body {
     padding: 0;
     margin: 0;
+    background-color: #b5bcf793;
 }
 
-.section-sobre{
+.section-sobre {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0.2rem;
 }
-.texto{
+.texto {
     font-size: 1.2rem;
     text-align: justify;
     padding: 1.1rem;
 }
-.section-sobre > img{
+.section-sobre > img {
     width: 50vw;
 }
-.card-produtos{
+
+
+.testeDiv {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    border: 2px solid red;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }
