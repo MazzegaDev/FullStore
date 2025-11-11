@@ -5,3 +5,14 @@ crud simples de produto
     - itens da venda
     - validações de venda, se tem no estoque etc
     
+
+
+
+----
+1 usuario add itens no carrinho
+2 usuario finaliza compra no carrinho
+----validações, estoque, creditos do usuario etc
+3 tabela de venda é iniciada
+4 itens da venda
+----baixa no estoque e no creditos do usuario
+5 fim
