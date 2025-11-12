@@ -10,7 +10,8 @@ export default class PerfilController {
     async cadastrar(req, res) {
         try {
             let { desc, adm } = req.body;
-            if (desc && adm) {
+            let cargos = [0, 1];
+            if (desc && cargos.includes(Number(adm))) {
                 let perfil = new Perfil(0, adm, desc);
                 if (await this.#pRepo.cadastrar(perfil)) {
                     return res
