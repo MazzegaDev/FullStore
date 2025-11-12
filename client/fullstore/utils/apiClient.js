@@ -30,8 +30,9 @@ export class ApiClient {
     async get(endpoint) {
         const response = await fetch(this.baseUrl + endpoint, {
             method: "GET",
-            headers: this.headers
-        })
+            credentials: "include",
+            headers: this.headers,
+        });
 
         return await this.checarResposta(response);
     }
@@ -40,6 +41,7 @@ export class ApiClient {
         const response = await fetch(this.baseUrl + endpoint, {
             method: "POST",
             headers: this.headers,
+            credentials: "include",
             body: JSON.stringify(body)
         })
 
@@ -50,8 +52,9 @@ export class ApiClient {
         const response = await fetch(this.baseUrl + endpoint, {
             method: "PUT",
             headers: this.headers,
-            body: JSON.stringify(body)
-        })
+            credentials: "include",
+            body: JSON.stringify(body),
+        });
 
         return await this.checarResposta(response);
     }
@@ -59,8 +62,9 @@ export class ApiClient {
     async delete(endpoint) {
         const response = await fetch(this.baseUrl + endpoint, {
             method: "DELETE",
-            headers: this.headers
-        })
+            credentials: "include",
+            headers: this.headers,
+        });
 
         return await this.checarResposta(response);
     }
@@ -69,8 +73,9 @@ export class ApiClient {
         const response = await fetch(this.baseUrl + endpoint, {
             method: "PATCH",
             headers: this.headers,
-            body: JSON.stringify(body)
-        })
+            credentials: "include",
+            body: JSON.stringify(body),
+        });
 
         return await this.checarResposta(response);
     }
@@ -78,8 +83,9 @@ export class ApiClient {
     async postFormData(endpoint, body) {
         const response = await fetch(this.baseUrl + endpoint, {
             method: "POST",
-            body: body
-        })
+            credentials: "include",
+            body: body,
+        });
 
         return await this.checarResposta(response);
     }

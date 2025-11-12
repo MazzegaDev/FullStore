@@ -14,7 +14,7 @@ import usuarioRoute from "./routes/usuarioRoute.js";
 import authRoute from "./routes/authRouter.js";
 
 const server = express();
-server.use(cors());
+server.use(cors({credentials: true, origin: "http://localhost:3000"}));
 server.use(express.json());
 server.use(cookieParser())
 
