@@ -18,3 +18,12 @@ crud simples de produto
 5 fim
 
 
+--- camadas
+
+sem login
+ apenas ver produtos e se autenticar
+
+usurios comuns
+    ver produtos, adicionar ao carrinho, comprar, ver suas compras e adicionar saldo
+adms
+    tudo
