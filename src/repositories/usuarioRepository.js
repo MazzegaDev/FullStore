@@ -80,7 +80,7 @@ export default class UsuarioRepository {
 
     async validarAcesso(email, senha) {
         const sql =
-            "select * from tb_usuario where usu_email = ? and usu_senha = ?";
+            "select *from tb_usuario U inner join tb_perfil P on U.per_id = P.per_id where usu_email = ? and usu_senha = ?";
 
         const values = [email, senha];
 
@@ -159,7 +159,6 @@ export default class UsuarioRepository {
         usuario.per_id.per_id = row["per_id"];
         usuario.per_id.per_desc = row["per_desc"];
         usuario.per_id.per_adm = row["per_adm"];
-
         return usuario;
     }
 }

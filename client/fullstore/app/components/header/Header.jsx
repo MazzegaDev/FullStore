@@ -7,7 +7,7 @@ export default function Header() {
         <header className="header">
             <h1>Loja fullstack</h1>
             <button className="login">
-                <Link className="link"  href={""}>
+                <Link className="link"  href="/login/">
                     Login
                 </Link>
             </button>

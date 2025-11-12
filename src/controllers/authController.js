@@ -29,7 +29,8 @@ export default class AuthController {
                     usuarioEncontrado.usu_nome,
                     usuarioEncontrado.usu_email,
                     usuarioEncontrado.usu_saldo,
-                    usuarioEncontrado.per_id.per_id
+                    usuarioEncontrado.per_id.per_id,
+                    usuarioEncontrado.per_id.per_adm,
                 );
 
                 res.cookie("token", token, {
@@ -42,7 +43,7 @@ export default class AuthController {
             } else {
                 return res
                     .status(400)
-                    .json({ msg: "Informe um E-Mail e senha validso" });
+                    .json({ msg: "Informe um E-Mail e senha validos" });
             }
         } catch (error) {
             console.log(error);
