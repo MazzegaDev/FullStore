@@ -54,6 +54,22 @@ export default class UsuarioRepository {
         return null;
     }
 
+
+    async verificarPermisao(id){
+        const sql = "select * from tb_usuario U inner join tb_perfil P on U.per_id = P.per_id where usu_id = ? and per_adm = 1";
+        const values = [id];
+
+        const rows = await this.#banco.ExecutaComando(sql, values);
+
+        if(rows.length > 0){
+            const row = rows[0];
+            let usuario = this.toMap(row);
+            return usuario
+        }
+
+        return null;
+    }
+
     async alterar(usuario) {
         const sql =
             "update tb_usuario set  usu_nome = ?, usu_email = ?, usu_senha = ?, per_id = ? where usu_id = ?";
