@@ -54,4 +54,25 @@ export default class AuthMiddleware {
             return res.status(401).json({ msg: "Token invalido." });
         }
     }
+    async validarTokerUser(req, res, next){
+        if(!req.cookies.token){
+            return res.status(401).json({msg: "Token não encontrado."});
+        }
+        let token = req.cookies.token;
+        try {
+            let payload = jwt.verify(token, SECRET);
+            let usuRepo = new UsuarioRepository();
+            let usuarioEncontrado = await usuRepo.buscarId(payload.id);
+            if(!usuarioEncontrado){
+                return res.status(401).json({msg: "Usuario não encontrado"});
+            }
+            req.UsuarioLogado = usuarioEncontrado.usu_id;
+            next();
+
+        } catch (error) {
+            console.log(error);
+            return res.status(401).json({msg: "Token invalido"})
+        }
+    }
+
 }
