@@ -1,10 +1,16 @@
 import express from "express";
 import CategoriaController from "../controllers/categoriaController.js";
+import AuthMiddleware from "../middleware/authMiddleware.js";
+const auth = new AuthMiddleware();
 
 const router = express.Router();
 const ctrl = new CategoriaController();
 
-router.post("/", (req, res) => {
+router.post("/", auth.validarToken, (req, res) => {
+    /* #swagger.security = [{
+        "bearerAuth": []
+    }]
+    */
     // #swagger.tags = ['Categoria']
     // #swagger.summary = 'Cadastra todas as categorias'
 
@@ -24,7 +30,11 @@ router.post("/", (req, res) => {
     ctrl.cadastrar(req, res);
 });
 
-router.get("/", (req, res) => {
+router.get("/", auth.validarToken, (req, res) => {
+    /* #swagger.security = [{
+        "bearerAuth": []
+    }]
+    */
     // #swagger.tags = ['Categoria']
     // #swagger.summary = 'Lista todas as categorias'
 
@@ -37,7 +47,12 @@ router.get("/", (req, res) => {
     ctrl.listar(req, res);
 });
 
-router.get("/:id", (req, res) => {
+router.get("/:id", auth.validarToken, (req, res) => {
+    /* #swagger.security = [{
+        "bearerAuth": []
+    }]
+    */
+
     // #swagger.tags = ['Categoria']
     // #swagger.summary = 'Lista uma a categorias especifica'
 
@@ -50,7 +65,12 @@ router.get("/:id", (req, res) => {
     ctrl.buscarId(req, res);
 });
 
-router.put("/", (req, res) => {
+router.put("/", auth.validarToken, (req, res) => {
+    /* #swagger.security = [{
+        "bearerAuth": []
+    }]
+    */
+
     // #swagger.tags = ['Categoria']
     // #swagger.summary = 'Altera uma categoria'
 
@@ -70,7 +90,12 @@ router.put("/", (req, res) => {
     ctrl.alterar(req, res);
 });
 
-router.delete("/:id", (req, res) => {
+router.delete("/:id", auth.validarToken, (req, res) => {
+    /* #swagger.security = [{
+        "bearerAuth": []
+    }]
+    */
+
     // #swagger.tags = ['Categoria']
     // #swagger.summary = 'Deleta uma categoria'
 

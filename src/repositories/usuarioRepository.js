@@ -40,8 +40,7 @@ export default class UsuarioRepository {
     }
 
     async buscarId(id) {
-        const sql =
-            "select * from tb_usuario where usu_id = ?";
+        const sql = "select * from tb_usuario where usu_id = ?";
         const values = [id];
 
         const rows = await this.#banco.ExecutaComando(sql, values);
@@ -77,6 +76,21 @@ export default class UsuarioRepository {
         const result = await this.#banco.ExecutaComandoNonQuery(sql, values);
 
         return result;
+    }
+
+    async validarAcesso(email, senha) {
+        const sql =
+            "select * from tb_usuario where usu_email = ? and usu_senha = ?";
+
+        const values = [email, senha];
+
+        const rows = await this.#banco.ExecutaComando(sql, values);
+        if (rows.length > 0) {
+            let row = rows[0];
+            let usuario = this.toMap2(row);
+            return usuario;
+        }
+        return null;
     }
 
     async buscarSaldo(id) {
@@ -117,6 +131,22 @@ export default class UsuarioRepository {
         return result;
     }
 
+    toMap2(row) {
+        let usuario = new Usuario();
+
+        usuario.usu_id = row["usu_id"];
+        usuario.usu_nome = row["usu_nome"];
+        usuario.usu_email = row["usu_email"];
+        usuario.usu_senha = row["usu_senha"];
+        usuario.usu_saldo = row["usu_saldo"];
+
+        usuario.per_id = new Perfil();
+        usuario.per_id.per_id = row["per_id"];
+        usuario.per_id.per_desc = row["per_desc"];
+        usuario.per_id.per_adm = row["per_adm"];
+
+        return usuario;
+    }
     toMap(row) {
         let usuario = new Usuario();
 
@@ -128,6 +158,7 @@ export default class UsuarioRepository {
         usuario.per_id = new Perfil();
         usuario.per_id.per_id = row["per_id"];
         usuario.per_id.per_desc = row["per_desc"];
+        usuario.per_id.per_adm = row["per_adm"];
 
         return usuario;
     }

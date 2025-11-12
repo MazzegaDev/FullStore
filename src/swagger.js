@@ -63,8 +63,8 @@ const doc = {
                 senha: "senhasenha123",
                 saldo: 1000,
                 idP: {
-                    per_id: 4
-                }
+                    per_id: 4,
+                },
             },
             usuarioAlter: {
                 id: 2,
@@ -73,12 +73,18 @@ const doc = {
                 senha: "senhasenha123",
                 saldo: 1000,
                 idP: {
-                    per_id: 4
-                }
+                    per_id: 4,
+                },
             },
             manipularSaldo: {
                 id: 1,
                 saldo: 3000,
+            },
+        },
+        securitySchemes: {
+            bearerAuth: {
+                type: "http",
+                scheme: "bearer",
             },
         },
     },

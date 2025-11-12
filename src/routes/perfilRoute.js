@@ -1,10 +1,16 @@
 import PerfilController from "../controllers/perfilController.js";
 import express from "express";
+import AuthMiddleware from "../middleware/authMiddleware.js";
+const auth = new AuthMiddleware();
 
 const router = express.Router();
 const ctrl = new PerfilController();
 
-router.post("/", (req, res) => {
+router.post("/", auth.validarToken, (req, res) => {
+    /* #swagger.security = [{
+        "bearerAuth": []
+    }]
+    */
     // #swagger.tags = ['Perfil']
     // #swagger.summary = 'Cadastra um perfil'
 
@@ -24,7 +30,11 @@ router.post("/", (req, res) => {
     ctrl.cadastrar(req, res);
 });
 
-router.get("/", (req, res) => {
+router.get("/", auth.validarToken, (req, res) => {
+    /* #swagger.security = [{
+        "bearerAuth": []
+    }]
+    */
     // #swagger.tags = ['Perfil']
     // #swagger.summary = 'Lista todos os perfis'
 
@@ -38,7 +48,11 @@ router.get("/", (req, res) => {
     ctrl.listar(req, res);
 });
 
-router.get("/:id", (req, res) => {
+router.get("/:id", auth.validarToken, (req, res) => {
+    /* #swagger.security = [{
+        "bearerAuth": []
+    }]
+    */
     // #swagger.tags = ['Perfil']
     // #swagger.summary = 'Lista um perfil especifico'
 
@@ -51,7 +65,11 @@ router.get("/:id", (req, res) => {
     ctrl.buscarId(req, res);
 });
 
-router.put("/", (req, res) => {
+router.put("/", auth.validarToken, (req, res) => {
+    /* #swagger.security = [{
+        "bearerAuth": []
+    }]
+    */
     // #swagger.tags = ['Perfil']
     // #swagger.summary = 'Altera um perfil'
 
@@ -72,6 +90,10 @@ router.put("/", (req, res) => {
 });
 
 router.delete("/:id", (req, res) => {
+    /* #swagger.security = [{
+        "bearerAuth": []
+    }]
+    */
     // #swagger.tags = ['Perfil']
     // #swagger.summary = 'Deleta um perfil'
 

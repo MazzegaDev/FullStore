@@ -1,10 +1,16 @@
 import express from "express";
 import ProdutoController from "../controllers/produtoController.js";
+import AuthMiddleware from "../middleware/authMiddleware.js";
+const auth = new AuthMiddleware();
 
 const router = express.Router();
 const ctrl = new ProdutoController();
 
-router.post("/", (req, res) => {
+router.post("/", auth.validarToken, (req, res) => {
+    /* #swagger.security = [{
+        "bearerAuth": []
+    }]
+    */
     // #swagger.tags = ['Produto']
     // #swagger.summary = 'Cadastra um produto'
 
@@ -47,9 +53,13 @@ router.get("/:id", (req, res) => {
             schema: {$ref: '#/components/schemas/erro'}
         }
     */
-   ctrl.buscaId(req, res);
-})
-router.put("/", (req, res) => {
+    ctrl.buscaId(req, res);
+});
+router.put("/", auth.validarToken, (req, res) => {
+    /* #swagger.security = [{
+        "bearerAuth": []
+    }]
+    */
     // #swagger.tags = ['Produto']
     // #swagger.summary = 'Altera um produto'
 
@@ -67,13 +77,17 @@ router.put("/", (req, res) => {
     */
 
     ctrl.alterarProduto(req, res);
-})
+});
 
-router.delete("/:id", (req, res) => {
+router.delete("/:id", auth.validarToken, (req, res) => {
+    /* #swagger.security = [{
+        "bearerAuth": []
+    }]
+    */
     // #swagger.tags = ['Produto']
     // #swagger.summary = 'Deleta um produto'
 
     ctrl.deletar(req, res);
-})
+});
 
 export default router;

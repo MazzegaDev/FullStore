@@ -1,10 +1,16 @@
 import express from "express";
 import UsuarioController from "../controllers/usuarioController.js";
+import AuthMiddleware from "../middleware/authMiddleware.js";
+const auth = new AuthMiddleware();
 
 const router = express.Router();
 const ctrl = new UsuarioController();
 
-router.post("/", (req, res) => {
+router.post("/", auth.validarToken, (req, res) => {
+    /* #swagger.security = [{
+        "bearerAuth": []
+    }]
+    */
     // #swagger.tags = ['Usuario']
     // #swagger.summary = 'Cadastra um usuario'
 
@@ -24,7 +30,11 @@ router.post("/", (req, res) => {
     ctrl.cadastrar(req, res);
 });
 
-router.get("/", (req, res) => {
+router.get("/", auth.validarToken, (req, res) => {
+    /* #swagger.security = [{
+        "bearerAuth": []
+    }]
+    */
     // #swagger.tags = ['Usuario']
     // #swagger.summary = 'Lista todos os usuario'
 
@@ -37,7 +47,11 @@ router.get("/", (req, res) => {
     ctrl.listar(req, res);
 });
 
-router.get("/:id", (req, res) => {
+router.get("/:id", auth.validarToken, (req, res) => {
+    /* #swagger.security = [{
+        "bearerAuth": []
+    }]
+    */
     // #swagger.tags = ['Usuario']
     // #swagger.summary = 'Lista um usuario especifico'
 
@@ -50,7 +64,11 @@ router.get("/:id", (req, res) => {
     ctrl.buscarId(req, res);
 });
 
-router.get("/:id", (req, res) => {
+router.get("/:id", auth.validarToken, (req, res) => {
+    /* #swagger.security = [{
+        "bearerAuth": []
+    }]
+    */
     // #swagger.tags = ['Usuario']
     // #swagger.summary = 'Retorna o saldo de um usuario especifico'
 
@@ -63,7 +81,11 @@ router.get("/:id", (req, res) => {
     ctrl.buscarSaldo(req, res);
 });
 
-router.put("/", (req, res) => {
+router.put("/", auth.validarToken, (req, res) => {
+    /* #swagger.security = [{
+        "bearerAuth": []
+    }]
+    */
     // #swagger.tags = ['Usuario']
     // #swagger.summary = 'Altera um usuario'
 
@@ -82,7 +104,11 @@ router.put("/", (req, res) => {
     ctrl.alterar(req, res);
 });
 
-router.patch("/adicionarSaldo", (req, res) => {
+router.patch("/adicionarSaldo", auth.validarToken, (req, res) => {
+    /* #swagger.security = [{
+        "bearerAuth": []
+    }]
+    */
     // #swagger.tags = ['Usuario']
     // #swagger.summary = Adiciona saldo para um usuario'
 
@@ -101,7 +127,11 @@ router.patch("/adicionarSaldo", (req, res) => {
     ctrl.adicionarSaldo(req, res);
 });
 
-router.patch("/subtrairSaldo", (req, res) => {
+router.patch("/subtrairSaldo", auth.validarToken, (req, res) => {
+    /* #swagger.security = [{
+        "bearerAuth": []
+    }]
+    */
     // #swagger.tags = ['Usuario']
     // #swagger.summary = 'Subtrai o saldo de um usuario'
 
@@ -120,7 +150,11 @@ router.patch("/subtrairSaldo", (req, res) => {
     ctrl.subtrairSaldo(req, res);
 });
 
-router.delete("/:id", (req, res) => {
+router.delete("/:id", auth.validarToken, (req, res) => {
+    /* #swagger.security = [{
+        "bearerAuth": []
+    }]
+    */
     // #swagger.tags = ['Usuario']
     // #swagger.summary = 'Deleta um usuario'
 
