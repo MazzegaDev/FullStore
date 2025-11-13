@@ -1,8 +1,9 @@
 import { NextResponse } from "next/server";
+import toast from "react-hot-toast";
 
 // This function can be marked `async` if using `await` inside
 export function proxy(request) {
-    if (!request.cookies.get("token")) {
+    if (!request.cookies.get("token_ADM")) {
         return NextResponse.redirect(new URL("/login", request.url));
     }
 }

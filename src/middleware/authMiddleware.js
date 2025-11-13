@@ -24,10 +24,11 @@ export default class AuthMiddleware {
     }
 
     async validarToken(req, res, next) {
-        if (!req.cookies.token) {
+
+        if (!req.cookies.token_ADM && !req.cookies.token_USER) {
             return res.status(401).json({ msg: "Token não encontrado." });
         }
-        let token = req.cookies.token;
+        let token = req.cookies.token_ADM || req.cookies.token_USER;
         try {
             let payload = jwt.verify(token, SECRET);
             let usuRepo = new UsuarioRepository()
@@ -55,10 +56,10 @@ export default class AuthMiddleware {
         }
     }
     async validarTokerUser(req, res, next){
-        if(!req.cookies.token){
-            return res.status(401).json({msg: "Token não encontrado."});
+        if (!req.cookies.token_ADM && !req.cookies.token_USER) {
+            return res.status(401).json({ msg: "Token não encontrado." });
         }
-        let token = req.cookies.token;
+        let token = req.cookies.token_ADM || req.cookies.token_USER;
         try {
             let payload = jwt.verify(token, SECRET);
             let usuRepo = new UsuarioRepository();

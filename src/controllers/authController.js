@@ -16,7 +16,9 @@ export default class AuthController {
             return res.status(200).json(req.UsuarioLogado);
         } catch (error) {
             console.log(error);
-            return res.status(500).json({msg: "Não foi possivel processar a requisição."});
+            return res
+                .status(500)
+                .json({ msg: "Não foi possivel processar a requisição." });
         }
     }
 
@@ -46,10 +48,18 @@ export default class AuthController {
                     usuarioEncontrado.per_id.per_adm
                 );
 
-                res.cookie("token", token, {
+                let acess = "USER";
+                if(usuarioEncontrado.per_id.per_adm == 1){
+                    acess = "ADM"
+                }
+
+
+                res.cookie(`token_${acess}`, token, {
                     httpOnly: true,
                 });
 
+
+                //Retornando o token e o usuario encontrado no sistema
                 return res
                     .status(200)
                     .json({ token: token, usuario: usuarioEncontrado });
