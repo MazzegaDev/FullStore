@@ -97,7 +97,7 @@ export class ApiClient {
         }
         else{
             let resposta = await response.json();
-            console.error(`Erro ao realizar requisição! HTTP Status: ${response.status}`)
+            console.log(`Erro ao realizar requisição! HTTP Status: ${response.status}`)
             if(resposta.msg) {
                 toast.error(resposta.msg);
             }

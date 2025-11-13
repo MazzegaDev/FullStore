@@ -1164,6 +1164,24 @@
       }
     },
     "/auth/": {
+      "get": {
+        "tags": [
+          "Autenticação"
+        ],
+        "summary": "Retorna um usuario atraves do seu cookie",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
       "post": {
         "tags": [
           "Autenticação"

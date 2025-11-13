@@ -8,6 +8,7 @@ import "../public/css/fontawesome-free/css/all.min.css";
 
 //Usa o contexto pelo provedor
 import { ContextProvider } from "./context/appContext";
+import { Toaster } from "react-hot-toast";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -22,7 +23,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-    title: "Loja fullstack",
+    title: "FullStore",
     description: "API-REST de uma loja",
 };
 
@@ -30,7 +31,10 @@ export default function RootLayout({ children }) {
     return (
         <ContextProvider>
             <html lang="en">
-                <body className={`${nunito.className}`}>{children}</body>
+                <body className={`${nunito.className}`}>
+                    <Toaster />
+                    {children}
+                </body>
             </html>
         </ContextProvider>
     );

@@ -40,7 +40,7 @@ export default class UsuarioRepository {
     }
 
     async buscarId(id) {
-        const sql = "select * from tb_usuario where usu_id = ?";
+        const sql = "select * from tb_usuario U inner join tb_perfil P on U.per_id = P.per_id  where usu_id = ?";
         const values = [id];
 
         const rows = await this.#banco.ExecutaComando(sql, values);

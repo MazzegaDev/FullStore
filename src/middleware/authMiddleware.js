@@ -43,10 +43,10 @@ export default class AuthMiddleware {
 
             if (!usuarioComAcesso) {
                 return res.status(403).json({
-                    msg: "Esse usuario não ter permissão para acessar.",
+                    msg: "Esse usuario não tem permissão para acessar.",
                 });
             }
-            req.UsuarioLogado = usuarioEncontrado.usu_id;
+            req.UsuarioLogado = usuarioEncontrado;
             next();
 
         } catch (error) {
@@ -66,7 +66,7 @@ export default class AuthMiddleware {
             if(!usuarioEncontrado){
                 return res.status(401).json({msg: "Usuario não encontrado"});
             }
-            req.UsuarioLogado = usuarioEncontrado.usu_id;
+            req.UsuarioLogado = usuarioEncontrado;
             next();
 
         } catch (error) {

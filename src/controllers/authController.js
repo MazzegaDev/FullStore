@@ -7,6 +7,19 @@ export default class AuthController {
         this.#userRepo = new UsuarioRepository();
     }
 
+    async usuarioLogado(req, res) {
+        try {
+            if (!req.UsuarioLogado) {
+                throw new Error("Não foi possivel encontrar o token");
+            }
+            //Retorna o objeto que está nesse atributo
+            return res.status(200).json(req.UsuarioLogado);
+        } catch (error) {
+            console.log(error);
+            return res.status(500).json({msg: "Não foi possivel processar a requisição."});
+        }
+    }
+
     async gerarToken(req, res) {
         try {
             let { email, senha } = req.body;
@@ -30,7 +43,7 @@ export default class AuthController {
                     usuarioEncontrado.usu_email,
                     usuarioEncontrado.usu_saldo,
                     usuarioEncontrado.per_id.per_id,
-                    usuarioEncontrado.per_id.per_adm,
+                    usuarioEncontrado.per_id.per_adm
                 );
 
                 res.cookie("token", token, {

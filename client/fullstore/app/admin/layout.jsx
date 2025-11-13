@@ -1,9 +1,15 @@
+'use client'
+
 import Link from "next/link";
 import "../../public/css/sb-admin-2.min.css";
 import "../../public/css/fontawesome-free/css/all.min.css";
 import "../../public/css/adminAnimations.css"; // novo CSS com as animações
+import { useContext } from "react";
+import appContexto from "../context/appContext";
 
 export default function AdminLayout({ children }) {
+    const {user} = useContext(appContexto)
+
     return (
         <div id="wrapper">
             {/* Sidebar */}
@@ -120,7 +126,7 @@ export default function AdminLayout({ children }) {
                                     aria-expanded="false"
                                 >
                                     <span className="mr-2 d-none d-lg-inline text-gray-600 small">
-                                        Usuário
+                                        {user.usu_nome}
                                     </span>
                                     {/* <img
                                         className="img-profile rounded-circle"
