@@ -1,9 +1,10 @@
 "use client";
 
 import { apiClient } from "@/utils/apiClient";
-import { useRouter } from "next/navigation";
+import { useRouter,  } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
+import Link from "next/link";
 
 export default function PageLogin() {
     const emailR = useRef("");
@@ -51,6 +52,11 @@ export default function PageLogin() {
             </div>
             <div>
                 <button onClick={validarLogin}>Entrar</button>
+            </div>
+            <div>
+                <Link href={"/"}>
+                        voltar
+                </Link>
             </div>
         </div>
     );
