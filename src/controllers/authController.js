@@ -53,7 +53,7 @@ export default class AuthController {
                     acess = "ADM"
                 }
 
-
+                //Criando cookie
                 res.cookie(`token_${acess}`, token, {
                     httpOnly: true,
                 });
