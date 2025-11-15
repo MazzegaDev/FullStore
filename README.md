@@ -121,5 +121,5 @@ npm run dev
 ## 👨‍💻 Autor
 **Guilherme Mazzega**  
 💼 Desenvolvedor **Full Stack** • 🎓 Estudante de **Análise e Desenvolvimento de Sistemas** •
-[🔗 LinkedIn](https://www.linkedin.com/mazzegaDev/) | [🐙 GitHub](https://github.com/)
+[🔗 LinkedIn](https://www.linkedin.com/in/mazzegadev) | [🐙 GitHub](https://github.com/)
 
