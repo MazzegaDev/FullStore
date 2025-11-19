@@ -1,7 +1,10 @@
-export default function userPage(){
-    return(
-        <div>
-            <h1>Pagina user</h1>
-        </div>
-    )
+"use client";
+
+export default function userPage() {
+
+   return (
+      <div>
+         <h1>Pagina user</h1>
+      </div>
+   );
 }

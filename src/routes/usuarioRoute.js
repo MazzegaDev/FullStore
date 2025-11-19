@@ -64,7 +64,7 @@ router.get("/:id", auth.validarToken, (req, res) => {
     ctrl.buscarId(req, res);
 });
 
-router.get("/:id", auth.validarToken, (req, res) => {
+router.get("/buscarSaldo/:id", auth.validarToken, (req, res) => {
     /* #swagger.security = [{
         "bearerAuth": []
     }]

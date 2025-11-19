@@ -25,7 +25,7 @@ export default function PageLogin() {
         try {
             const response = await apiClient.post("/auth/", obj);
             if (response) {
-                console.log(response.usuario)
+                //console.log(response.usuario)
                 if (response.usuario.per_id.per_adm == 1) {
                     router.replace("/admin");
                 } else {

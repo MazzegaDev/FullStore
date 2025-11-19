@@ -988,7 +988,7 @@
         "tags": [
           "Usuario"
         ],
-        "summary": "Retorna o saldo de um usuario especifico",
+        "summary": "Lista um usuario especifico",
         "description": "",
         "parameters": [
           {
@@ -1063,6 +1063,59 @@
           },
           "404": {
             "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/usuario/buscarSaldo/{id}": {
+      "get": {
+        "tags": [
+          "Usuario"
+        ],
+        "summary": "Retorna o saldo de um usuario especifico",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Nenhum usuario para listar",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/erro"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/erro"
+                }
+              }
+            }
           },
           "500": {
             "description": "Internal Server Error"
