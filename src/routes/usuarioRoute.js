@@ -47,7 +47,7 @@ router.get("/", auth.validarToken, (req, res) => {
     ctrl.listar(req, res);
 });
 
-router.get("/:id", auth.validarToken, (req, res) => {
+router.get("/:id", auth.validarTokerUser, (req, res) => {
     /* #swagger.security = [{
         "bearerAuth": []
     }]
@@ -64,7 +64,7 @@ router.get("/:id", auth.validarToken, (req, res) => {
     ctrl.buscarId(req, res);
 });
 
-router.get("/buscarSaldo/:id", auth.validarToken, (req, res) => {
+router.get("/buscarSaldo/:id", auth.validarTokerUser, (req, res) => {
     /* #swagger.security = [{
         "bearerAuth": []
     }]
@@ -81,7 +81,7 @@ router.get("/buscarSaldo/:id", auth.validarToken, (req, res) => {
     ctrl.buscarSaldo(req, res);
 });
 
-router.put("/", auth.validarToken, (req, res) => {
+router.put("/", auth.validarTokerUser, (req, res) => {
     /* #swagger.security = [{
         "bearerAuth": []
     }]

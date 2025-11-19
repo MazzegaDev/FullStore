@@ -30,7 +30,7 @@ export default function AdminLayout({ children }) {
             </a>
 
             <li className="nav-item active">
-               <Link className="nav-link" href="/user">
+               <Link className="nav-link" href="/user/">
                   <i className="fas fa-home"></i>
                   <span>Início</span>
                </Link>

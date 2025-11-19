@@ -5,16 +5,14 @@ import { useContext } from "react";
 import Link from "next/link";
 
 
+
 export default function UsuarioPage() {
    const { user } = useContext(appContexto);
-
-
+   const id = user.usu_id;
 
    return (
       <div className="container mt-4">
-
          <div className="card shadow mb-4 border-0 rounded-3">
-
             <div className="card-header bg-primary text-white py-3 rounded-top d-flex justify-content-between align-items-center">
                <h4 className="mb-0">
                   <i className="fas fa-user me-2"></i>
@@ -22,12 +20,12 @@ export default function UsuarioPage() {
                </h4>
 
                <Link
-                  href={`/user/usuario/alterar`} 
+                  href={`/user/usuario/alterar/${id}`}
                   className="btn btn-light btn-sm shadow-sm"
-                > 
+               >
                   <i className="fas fa-edit me-2"></i>
                   Alterar dados
-               </Link> 
+               </Link>
             </div>
 
             {/* BODY */}
@@ -68,14 +66,17 @@ export default function UsuarioPage() {
                               </td>
                               <td>R$ {user.usu_saldo}</td>
                               <td>
-                                 <span className="badge bg-danger shadow-sm px-3 py-2">
-                                    {user.per_id.per_adm == 0 ? (
+                                 {user.per_id.per_adm == 0 ? (
+                                    <span className="badge bg-danger shadow-sm px-3 py-2">
                                        <i className="fas fa-lock-open"></i>
-                                    ) : (
+                                       {user.per_id.per_desc}{" "}
+                                    </span>
+                                 ) : (
+                                    <span className="badge bg-primary shadow-sm px-3 py-2">
                                        <i className="fas fa-lock"></i>
-                                    )}
-                                    {user.per_id.per_desc}
-                                 </span>
+                                       {user.per_id.per_desc}
+                                    </span>
+                                 )}
                               </td>
                            </tr>
                         </tbody>
